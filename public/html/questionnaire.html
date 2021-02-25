@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care4you - 狀況問卷</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="../css/questionnaire.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Navbar</span>
+        </div>
+    </nav>
+
+    <div class="col-12 pictureHolder">
+        <img src="../assets/questionnaire.jpg" class="picture mb-4">
+        <span class="overlay"> 狀況問卷 </span>
+
+    </div>
+
+    <div class="container">
+        <form>
+
+            <div class="row">
+                <div class="form-group col-12 col-md-6 my-4">
+                    <label for="insomiaForm">你一周內有多少天有失眠的情況？</label>
+                    <select name="insomnia" class="form-control" id="insomiaForm">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-md-6 my-4">
+                    <label for="depressedForm">你一周內有多少天有抑鬱症狀的情況？</label>
+                    <select name="depressed" class="form-control" id="depressedForm">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12 col-md-6 my-4">
+                    <label for="panicForm">你一周內有多少天有焦慮的症狀？</label>
+                    <select name="panic" class="form-control" id="panicForm">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-md-6 my-4">
+                    <label for="otherSymptomsForm">你一周內有多少天有其他情緒/精神上的症狀？</label>
+                    <select name="panic" class="form-control" id="otherSymptomsForm">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary my-4">提交</button>
+        </form>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
