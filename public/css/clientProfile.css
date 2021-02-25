@@ -1,0 +1,22 @@
+.profile-head {
+    transform: translateY(5rem)
+}
+
+
+
+.cover {
+    background-image: url("../assets/Radiant-Gradient.svg");
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+.coverPicture{
+    background-size: cover;
+}
+
+body {
+    background: #654ea3;
+    background: white;
+    min-height: 100vh
+}
+
