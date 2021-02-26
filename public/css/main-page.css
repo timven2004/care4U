@@ -55,7 +55,7 @@ p {
     width: 200px;
     height: 250px;
     background-color: LightSkyBlue;
-    margin: 30px 15px;
+    margin: 10px 15px 30px;
     border-radius: 20px;
     opacity: 0.5;
     color: black;
@@ -98,7 +98,7 @@ p {
 
 .workflow {
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-bottom: 0;
     opacity: 0.6;
 }
