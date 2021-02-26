@@ -8,8 +8,8 @@ export async function up(knex: Knex): Promise<void> {
         table.string("email").notNullable();
         table.integer("telephone").notNullable();
         table.string("password").notNullable();
-        table.date("created_at");
-        table.date("updated_at");
+        table.timestamp("created_at").defaultTo(knex.fn.now());
+        table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
 
     await knex.schema.createTable("doctors", (table) => {
@@ -18,8 +18,8 @@ export async function up(knex: Knex): Promise<void> {
         table.string("email").notNullable();
         table.integer("telephone").notNullable();
         table.string("password").notNullable();
-        table.date("created_at")
-        table.date("updated_at")
+        table.timestamp("created_at").defaultTo(knex.fn.now())
+        table.timestamp("updated_at").defaultTo(knex.fn.now())
         table.text("description")
 
     })
