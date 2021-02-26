@@ -1,13 +1,12 @@
 // Update with your config settings.
-import dotenv from "dotenv"
 
+import dotenv from "dotenv";
 dotenv.config();
-
 
 module.exports = {
 
   development: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
       database: process.env.DEVELOPMENT_DB_NAME,
       user: process.env.DEVELOPMENT_USERNAME,
@@ -19,38 +18,41 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: "knex_migrations"
     }
   },
 
+
   staging: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      database: process.env.STAGING_DB_NAME,
-      user: process.env.STAGING_USERNAME,
-      password: process.env.STAGING_PASSWORD
+      database: "my_db",
+      user: "username",
+      password: "password"
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: "knex_migrations"
     }
   },
 
   production: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      database: process.env.PRODUCTION_DB_NAME,
-      user: process.env.PRODUCTION_USERNAME,
-      password: process.env.PRODUCTION_PASSWORD
+      database: "my_db",
+      user: "username",
+      password: "password"
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }}
-}
+      tableName: "knex_migrations"
+    }
+  }
+
+};
