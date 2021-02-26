@@ -11,7 +11,8 @@ module.exports = {
     connection: {
       database: process.env.DEVELOPMENT_DB_NAME,
       user: process.env.DEVELOPMENT_USERNAME,
-      password: process.env.DEVELOPMENT_PASSWORD
+      password: process.env.DEVELOPMENT_PASSWORD,
+      host:'localhost'
     },
     pool: {
       min: 2,
