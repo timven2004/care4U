@@ -1,5 +1,5 @@
 import {ProfileService} from "../services/profileService"
-// import {Request, Response} from "express"
+import {Request} from "express"
 
 export class ProfileController{
     private profileService
@@ -12,7 +12,17 @@ export class ProfileController{
         return result
     }
 
-    putUser(){}
+    async putUser(id:number, body:Request["body"]){
+        await this.profileService.updateUserProfile(id, body)
+    }
 
+    async getDoctor(id:number, withPassword:boolean=false){
+        const result = await this.profileService.getDoctorProfile(id, withPassword)
+        return result
+    }
+
+    async putDoctor(id:number, body:Request["body"]){
+        await this.profileService.updateDoctorProfile(id, body)
+    }
 }
 
