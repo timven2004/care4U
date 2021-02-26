@@ -7,6 +7,20 @@ export class ProfileService {
         this.knex = knex
     }
 
+    async createUser(body: Request['body']){
+        const result = await this.knex.transaction( async (trx)=>{
+            return trx("users").insert({
+                "name": body["name"],
+                "email": body["email"],
+                "telephone": body["telephone"],
+                "password": body["password"],
+                "created_at": trx.fn.now(),
+                "updated_at": trx.fn.now()
+            })
+        })
+        return result
+    }
+
     async getUserProfile(id: number, withPassword: boolean = false) {
         const result = await this.knex.select("name", "email", "telephone", "password", "created_at", "updated_at").from("users").where("id", id)
 
@@ -49,6 +63,20 @@ async updateUserProfile(id: number, body: Request['body']){
 //                 .returning(["name","email","telephone","updated_at"]);
 
 //                 return result
+}
+
+async createDoctor(body: Request['body']){
+    const result = await this.knex.transaction( async (trx)=>{
+        return trx("doctors").insert({
+            "name": body["name"],
+            "email": body["email"],
+            "telephone": body["telephone"],
+            "password": body["password"],
+            "created_at": trx.fn.now(),
+            "updated_at": trx.fn.now()
+        })
+    })
+    return result
 }
 
 async getDoctorProfile(id: number, withPassword: boolean = false){

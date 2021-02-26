@@ -7,6 +7,11 @@ export class ProfileController{
         this.profileService = profileService
     }
 
+    async postUser(body:Request["body"]){
+        const result = await this.profileService.createUser(body)
+        return result
+    }
+
     async getUser(id:number, withPassword:boolean=false){
         const result = await this.profileService.getUserProfile(id, withPassword)
         return result
@@ -14,6 +19,11 @@ export class ProfileController{
 
     async putUser(id:number, body:Request["body"]){
         const result = await this.profileService.updateUserProfile(id, body);
+        return result
+    }
+
+    async postDoctor(body:Request["body"]){
+        const result = await this.profileService.createDoctor(body)
         return result
     }
 

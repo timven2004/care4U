@@ -3,6 +3,17 @@ import express, { Request, Response } from 'express';
 
 export const profileRoutes = express.Router();
 
+
+profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
+    try{
+        res.json(await profileController.postUser(req.body))
+
+    }catch(err){
+        console.error(err.message)
+        res.status(502).json({message:"Internal Server Error"})
+    }
+})
+
 profileRoutes.get("/api/userProfile/:id", async (req:Request, res:Response)=>{
     try{
         const idString=req.params.id
@@ -23,6 +34,16 @@ profileRoutes.put("/api/userProfile/:id", async (req:Request, res:Response)=>{
     } catch(err){
         console.error(err.message)
         res.status(500).json({message:"Internal Server Error"})
+    }
+})
+
+profileRoutes.post("/api/createDoctor", async (req:Request, res:Response)=>{
+    try{
+        res.json(await profileController.postDoctor(req.body))
+
+    }catch(err){
+        console.error(err.message)
+        res.status(502).json({message:"Internal Server Error"})
     }
 })
 
