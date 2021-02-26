@@ -5,6 +5,10 @@
   "repository": "https://gitlab.com/timven2004/c13-bad-project-06-tw.git",
   "author": "Tim Leung <timven2004@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "ts-node-dev main.ts"
+  },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.11",
