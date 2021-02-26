@@ -2,83 +2,83 @@ import * as Knex from "knex";
 
 
 export async function up(knex: Knex): Promise<void> {
-    await knex.schema.createTable("Users", (table) => {
+    await knex.schema.createTable("users", (table) => {
         table.increments("id");
-        table.string("name");
-        table.string("email");
-        table.integer("telephone");
-        table.string("password");
-        table.date("created_at")
-        table.date("updated_at")
+        table.string("name").notNullable();
+        table.string("email").unique().notNullable();
+        table.integer("telephone").unique().notNullable();
+        table.string("password").notNullable();
+        table.timestamp("created_at").defaultTo(knex.fn.now());
+        table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
 
-    await knex.schema.createTable("Doctors", (table) => {
+    await knex.schema.createTable("doctors", (table) => {
         table.increments("id");
-        table.string("name");
-        table.string("email");
-        table.integer("telephone");
-        table.string("password");
-        table.date("created_at")
-        table.date("updated_at")
+        table.string("name").notNullable();
+        table.string("email").unique().notNullable();
+        table.integer("telephone").unique().notNullable();
+        table.string("password").notNullable();
+        table.timestamp("created_at").defaultTo(knex.fn.now())
+        table.timestamp("updated_at").defaultTo(knex.fn.now())
         table.text("description")
 
     })
 
-    await knex.schema.createTable("Questionnaires", (table) => {
+    await knex.schema.createTable("questionnaires", (table) => {
         table.increments("id");
-        table.integer("user_id");
-        table.foreign("user_id").references("Users.id");
-        table.integer("insomnia");
-        table.integer("depressed");
-        table.integer("panic");
-        table.integer("other_symptoms")
+        table.integer("user_id").unsigned().notNullable();
+        table.foreign("user_id").references("users.id");
+        table.integer("insomnia").notNullable();
+        table.integer("depressed").notNullable();
+        table.integer("panic").notNullable();
+        table.integer("other_symptoms").notNullable()
     })
 
-    await knex.schema.createTable("Bookings", (table) => {
+    await knex.schema.createTable("bookings", (table) => {
         table.increments("id");
-        table.timestamp("time");
-        table.integer("user_id");
-        table.foreign("user_id").references("Users.id");
-        table.integer("doctor_id");
-        table.foreign("doctor_id").references("Doctors.id");
-        table.integer("questionnaire_id");
-        table.foreign("questionnaire_id").references("Questionnaires.id");
-        table.boolean("is_active");
+        table.timestamp("time").notNullable();
+        table.integer("user_id").unsigned().notNullable();
+        table.foreign("user_id").references("users.id");
+        table.integer("doctor_id").unsigned().notNullable();
+        table.foreign("doctor_id").references("doctors.id");
+        table.integer("questionnaire_id").unique().unsigned().notNullable();
+        table.foreign("questionnaire_id").references("questionnaires.id");
+        table.boolean("is_active").notNullable();
     })
 
-    await knex.schema.createTable("Doctors_available_time_slots", (table) => {
+    await knex.schema.createTable("doctors_available_time_slots", (table) => {
         table.increments("id");
-        table.integer("doctor_id");
-        table.foreign("doctor_id").references("Doctors.id");
-        table.timestamp("time_start");
-        table.timestamp("time_end")
+        table.integer("doctor_id").unsigned().notNullable();
+        table.foreign("doctor_id").references("doctors.id");
+        table.timestamp("time_start").notNullable();
+        table.timestamp("time_end").notNullable()
     })
 
-    await knex.schema.createTable("Transaction_records", (table) => {
+    await knex.schema.createTable("transaction_records", (table) => {
         table.increments("id");
-        table.integer("consultation_fee");
-        table.integer("service_fee");
-        table.integer("user_id");
-        table.foreign("user_id").references("Users.id")
-        table.integer("doctor_id")
-        table.foreign("doctor_id").references("Doctors.id")
-        table.integer("booking_id")
-        table.foreign("booking_id").references("Bookings.id")
-        table.boolean("is_success")
-        table.timestamp("payment_date")
+        table.integer("consultation_fee").unsigned().notNullable();
+        table.integer("service_fee").unsigned().notNullable();
+        table.integer("user_id").unsigned().notNullable();
+        table.foreign("user_id").references("users.id")
+        table.integer("doctor_id").notNullable()
+        table.foreign("doctor_id").references("doctors.id")
+        table.integer("booking_id").unique().notNullable()
+        table.foreign("booking_id").references("bookings.id")
+        table.boolean("is_success").notNullable()
+        table.timestamp("payment_date").notNullable().defaultTo(knex.fn.now())
     })
 
-    await knex.schema.createTable("Medical_records", (table) => {
+    await knex.schema.createTable("medical_records", (table) => {
         table.increments("id");
-        table.text("doctor_comment");
-        table.integer("user_id");
-        table.foreign("user_id").references("Users.id")
-        table.integer("doctor_id")
-        table.foreign("doctor_id").references("Doctors.id")
-        table.integer("booking_id")
-        table.foreign("booking_id").references("Bookings.id")
-        table.integer("transaction_id")
-        table.foreign("transaction_id").references("Transaction_records.id")
+        table.text("doctor_comment").notNullable();
+        table.integer("user_id").unsigned().notNullable();
+        table.foreign("user_id").references("users.id")
+        table.integer("doctor_id").unsigned().notNullable()
+        table.foreign("doctor_id").references("doctors.id")
+        table.integer("booking_id").unsigned().notNullable()
+        table.foreign("booking_id").references("bookings.id")
+        table.integer("transaction_id").unsigned().notNullable()
+        table.foreign("transaction_id").references("transaction_records.id")
 
 
 
@@ -87,13 +87,13 @@ export async function up(knex: Knex): Promise<void> {
 
 
 export async function down(knex: Knex): Promise<void> {
-    await knex.schema.dropTable("Medical_records");
-    await knex.schema.dropTable("Transaction_records");
-    await knex.schema.dropTable("Doctors_available_time_slots");
-    await knex.schema.dropTable("Bookings");
-    await knex.schema.dropTable("Questionnaires");
-    await knex.schema.dropTable("Doctors");
-    await knex.schema.dropTable("Users");
+    await knex.schema.dropTable("medical_records");
+    await knex.schema.dropTable("transaction_records");
+    await knex.schema.dropTable("doctors_available_time_slots");
+    await knex.schema.dropTable("bookings");
+    await knex.schema.dropTable("questionnaires");
+    await knex.schema.dropTable("doctors");
+    await knex.schema.dropTable("users");
 
 }
 
