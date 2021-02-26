@@ -5,8 +5,8 @@ export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable("users", (table) => {
         table.increments("id");
         table.string("name").notNullable();
-        table.string("email").notNullable();
-        table.integer("telephone").notNullable();
+        table.string("email").unique().notNullable();
+        table.integer("telephone").unique().notNullable();
         table.string("password").notNullable();
         table.timestamp("created_at").defaultTo(knex.fn.now());
         table.timestamp("updated_at").defaultTo(knex.fn.now());
@@ -15,8 +15,8 @@ export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable("doctors", (table) => {
         table.increments("id");
         table.string("name").notNullable();
-        table.string("email").notNullable();
-        table.integer("telephone").notNullable();
+        table.string("email").unique().notNullable();
+        table.integer("telephone").unique().notNullable();
         table.string("password").notNullable();
         table.timestamp("created_at").defaultTo(knex.fn.now())
         table.timestamp("updated_at").defaultTo(knex.fn.now())
@@ -41,7 +41,7 @@ export async function up(knex: Knex): Promise<void> {
         table.foreign("user_id").references("users.id");
         table.integer("doctor_id").unsigned().notNullable();
         table.foreign("doctor_id").references("doctors.id");
-        table.integer("questionnaire_id").unsigned().notNullable();
+        table.integer("questionnaire_id").unique().unsigned().notNullable();
         table.foreign("questionnaire_id").references("questionnaires.id");
         table.boolean("is_active").notNullable();
     })
@@ -62,10 +62,10 @@ export async function up(knex: Knex): Promise<void> {
         table.foreign("user_id").references("users.id")
         table.integer("doctor_id").notNullable()
         table.foreign("doctor_id").references("doctors.id")
-        table.integer("booking_id").notNullable()
+        table.integer("booking_id").unique().notNullable()
         table.foreign("booking_id").references("bookings.id")
         table.boolean("is_success").notNullable()
-        table.timestamp("payment_date").notNullable()
+        table.timestamp("payment_date").notNullable().defaultTo(knex.fn.now())
     })
 
     await knex.schema.createTable("medical_records", (table) => {
