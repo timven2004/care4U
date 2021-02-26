@@ -18,10 +18,11 @@ profileRoutes.put("/api/userProfile/:id", async (req:Request, res:Response)=>{
     try{
         const idString=req.params.id
         const id = parseInt(idString)
-        await profileController.putUser(id, req.body)   
+        const result = await profileController.putUser(id, req.body) 
+        res.json(result)
     } catch(err){
         console.error(err.message)
-        res.status(502).json({message:"Internal Server Error"})
+        res.status(500).json({message:"Internal Server Error"})
     }
 })
 
@@ -40,7 +41,7 @@ profileRoutes.put("/api/doctorProfile/:id", async (req:Request, res:Response)=>{
     try{
         const idString=req.params.id
         const id = parseInt(idString)
-        await profileController.putUser(id, req.body)   
+        res.json(await profileController.putDoctor(id, req.body))  
     } catch(err){
         console.error(err.message)
         res.status(502).json({message:"Internal Server Error"})

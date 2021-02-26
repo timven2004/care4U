@@ -13,7 +13,8 @@ export class ProfileController{
     }
 
     async putUser(id:number, body:Request["body"]){
-        await this.profileService.updateUserProfile(id, body)
+        const result = await this.profileService.updateUserProfile(id, body);
+        return result
     }
 
     async getDoctor(id:number, withPassword:boolean=false){
@@ -22,7 +23,8 @@ export class ProfileController{
     }
 
     async putDoctor(id:number, body:Request["body"]){
-        await this.profileService.updateDoctorProfile(id, body)
+        const result = await this.profileService.updateDoctorProfile(id, body)
+        return result
     }
 }
 

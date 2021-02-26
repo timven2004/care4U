@@ -25,8 +25,8 @@ export class ProfileService {
 
 async updateUserProfile(id: number, body: Request['body']){
 
-    await this.knex.transaction(async (trx) => {
-        trx("users")
+    const result = await this.knex.transaction(async (trx) => {
+      return trx("users")
             .where("id", id)
             .update({
                 "name": body["name"],
@@ -35,15 +35,20 @@ async updateUserProfile(id: number, body: Request['body']){
                 "password": body["password"],
                 "updated_at": this.knex.fn.now()
             })
+         .returning(["name","email","telephone","updated_at"]);
     })
+    return result
+//     console.log(body)
+//    const result= await this.knex("users")
+//                 .where("id",id)
+//                 .update({"name":body["name"],
+//                 "email":body["email"],
+//                 "telephone":body["telephone"],
+//                 "password":body["password"],
+//                 "updated_at":this.knex.fn.now()})
+//                 .returning(["name","email","telephone","updated_at"]);
 
-    // await this.knex("users")
-    //             .where("id",id)
-    //             .update({"name":body["name"],
-    //             "email":body["email"],
-    //             "telephone":body["telephone"],
-    //             "password":body["password"],
-    //             "updated_at":this.knex.fn.now()})
+//                 return result
 }
 
 async getDoctorProfile(id: number, withPassword: boolean = false){
@@ -61,17 +66,19 @@ async getDoctorProfile(id: number, withPassword: boolean = false){
 
 async updateDoctorProfile(id: number, body: Request['body']){
 
-    await this.knex.transaction(async (trx) => {
-        trx("doctors")
-            .where("id", id)
-            .update({
-                "name": body["name"],
-                "email": body["email"],
-                "telephone": body["telephone"],
-                "password": body["password"],
-                "updated_at": this.knex.fn.now()
-            })
-    })
+    const result = await this.knex.transaction(async (trx) => {
+        return trx("doctors")
+              .where("id", id)
+              .update({
+                  "name": body["name"],
+                  "email": body["email"],
+                  "telephone": body["telephone"],
+                  "password": body["password"],
+                  "updated_at": this.knex.fn.now()
+              })
+           .returning(["name","email","telephone","updated_at"]);
+      })
+      return result
 
     // await this.knex("users")
     //             .where("id",id)
