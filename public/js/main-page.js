@@ -9,17 +9,17 @@ let isLoggedIn = false;
 function switchLoginRegForm() {
     userLoginForm.style.display = "block";
     userRegForm.style.display = "none";
-    switchRegLoginBtn.innerHTML = "免費註冊";
+    switchRegLoginBtn.innerHTML = "請按此註冊";
 
     switchRegLoginBtn.addEventListener("click", () => {
         if (!fillingLoginForm) {
             userLoginForm.style.display = "block";
             userRegForm.style.display = "none";
-            switchRegLoginBtn.innerHTML = "免費註冊";
+            switchRegLoginBtn.innerHTML = "請按此註冊";
         } else {
             userLoginForm.style.display = "none";
             userRegForm.style.display = "block";
-            switchRegLoginBtn.innerHTML = "立即登入";
+            switchRegLoginBtn.innerHTML = "請按此登入";
         }
         fillingLoginForm = !fillingLoginForm;
     });
