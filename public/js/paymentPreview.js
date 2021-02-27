@@ -1,5 +1,10 @@
 var stripe = Stripe("pk_test_51IOIHmEvACqcuP7EJ8yiebh2QLCCnBPGWRPkAMvwWJ9iJtDOIB9KNoM26AsiCQrMb7iRQooXHol6IpMBfMBpfrXw00gWw2cRr3");
 var checkoutButton = document.getElementById("checkout-button");
+
+
+
+
+
 checkoutButton.addEventListener("click", function () {
   fetch("/create-checkout-session", {
     method: "POST",

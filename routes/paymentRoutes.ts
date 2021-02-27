@@ -8,3 +8,9 @@ paymentRoutes.post('/create-checkout-session', async (req: Request, res: Respons
   paymentController.createCheckoutSession(req,res);
 
 });
+
+paymentRoutes.get("/successfulPayment", async (req:Request, res:Response)=>{
+
+  paymentController.successfulPayment(req,res)
+
+})

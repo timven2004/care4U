@@ -8,17 +8,28 @@ import bodyParser from 'body-parser';
 import {PaymentController} from "./controllers/paymentController"
 import {PaymentServices} from "./services/paymentServices"
 import {paymentRoutes} from "./routes/paymentRoutes"
+import expressSession from 'express-session';
 dotenv.config();
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+// Add this line
+
 
 
 const app = express()
 
+app.use(expressSession({
+    secret: 'c13-bad-Group6',
+    resave:true,
+    saveUninitialized:true
+}));
 
 const knexConfig = require("./knexfile")
 const knex = Knex(knexConfig[process.env.NODE_ENV||"development"])
 export const profileService = new ProfileService(knex)
 export const profileController = new ProfileController(profileService)
-export const paymentServices = new PaymentServices(process.env.YOUR_DOMAIN||"http://localhost:8080")
+export const paymentServices = new PaymentServices(process.env.YOUR_DOMAIN||"http://localhost:8080", stripe, knex)
 export const paymentController = new PaymentController(paymentServices)
 
 app.use(bodyParser.urlencoded({extended:true}));

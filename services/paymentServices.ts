@@ -1,12 +1,16 @@
 import { Request, Response } from "express"
-import { Line_items } from "../interface/payment"
+import { Line_items } from "../interface/payment" 
+import Knex from 'knex'
+
+
 
 export class PaymentServices {
     Your_Domain: string
-    stripe = require('stripe')('sk_test_51IOIHmEvACqcuP7E37BElTNEkyjpIoKIuxvoTBUt3AsDv9EERu9kUmCpLziQGCAiyhQLWuKz6J5J5VGp0xpCodQb00J5HG7CLl');
+    stripe:any
 
-    constructor(Your_Domain: string) {
+    constructor(Your_Domain: string, stripe:any, knex:Knex) {
         this.Your_Domain = Your_Domain;
+        this.stripe = stripe
     }
 
     async createCheckoutSession(line_items:Line_items[], req: Request, res: Response) {
@@ -22,9 +26,16 @@ export class PaymentServices {
             cancel_url: `${this.Your_Domain}/html/paymentCancelled.html`,
             
         });
-
         res.json({ id: session.id });} catch (err){
             console.log(err)
+        }
+    }
+
+    async successfulPayment(req:Request, res:Response){
+        try{
+        res.json({message: "payment success"})             }
+        catch (err){
+            console.log(err.message)
         }
     }
 }
