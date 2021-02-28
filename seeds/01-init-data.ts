@@ -7,6 +7,9 @@ export async function seed(knex: Knex): Promise<void> {
     await knex("users").del();
     // Inserts seed entries
 
+ 
+
+
     await knex("users").insert([
         {
             name: "jason",
