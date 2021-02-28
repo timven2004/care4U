@@ -1,0 +1,8 @@
+.tavo-calendar__day_highlight{
+    color:#121212 !important;
+    font-weight: 800;
+}
+
+#timeSlots{
+    margin: 5px;
+}

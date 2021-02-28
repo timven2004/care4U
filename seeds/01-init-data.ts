@@ -3,13 +3,10 @@ import { hashPassword } from "../hash";
 
 export async function seed(knex: Knex): Promise<void> {
     // Deletes ALL existing entries
+    await knex("doctors_available_time_slots").del();
     await knex("doctors").del();
     await knex("users").del();
     // Inserts seed entries
-
- 
-
-
     await knex("users").insert([
         {
             name: "jason",
@@ -31,7 +28,7 @@ export async function seed(knex: Knex): Promise<void> {
         },
     ]);
 
-    await knex("doctors").insert([
+    const doctorsIds = await knex("doctors").insert([
         {
             name: "Dr.CHAN, Christian Shaunlyn 陳濬靈",
             password: await hashPassword("12345"),
@@ -101,6 +98,67 @@ export async function seed(knex: Knex): Promise<void> {
             email: "npsyhk@gmail.com",
             telephone: "35066308",
             description: "Alpha Clinic/Hospital Authority",
+        },
+    ]).returning('id');
+
+    await knex("doctors_available_time_slots").insert([
+        {
+            doctor_id: doctorsIds[0],
+            time_start: '2037-01-01 10:00:00+08',
+            time_end: '2037-01-01 11:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[0],
+            time_start: '2037-01-02 10:00:00+08',
+            time_end: '2037-01-02 11:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[0],
+            time_start: '2037-01-03 10:00:00+08',
+            time_end: '2037-01-03 11:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[1],
+            time_start: '2037-01-03 10:00:00+08',
+            time_end: '2037-01-03 11:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[1],
+            time_start: '2037-01-05 13:00:00+08',
+            time_end: '2037-01-05 14:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[1],
+            time_start: '2037-01-05 14:00:00+08',
+            time_end: '2037-01-05 15:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[1],
+            time_start: '2037-01-05 15:00:00+08',
+            time_end: '2037-01-05 16:00:00+08'
+        },
+
+
+        {
+            doctor_id: doctorsIds[2],
+            time_start: '2037-01-07 18:00:00+08',
+            time_end: '2037-01-07 19:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[2],
+            time_start: '2037-01-07 19:00:00+08',
+            time_end: '2037-01-07 20:00:00+08'
+        },
+
+        {
+            doctor_id: doctorsIds[3],
+            time_start: '2037-02-07 18:00:00+08',
+            time_end: '2037-02-07 19:00:00+08'
+        },
+        {
+            doctor_id: doctorsIds[3],
+            time_start: '2037-02-07 19:00:00+08',
+            time_end: '2037-02-07 20:00:00+08'
         },
     ]);
 }
