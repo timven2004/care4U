@@ -104,61 +104,61 @@ export async function seed(knex: Knex): Promise<void> {
     await knex("doctors_available_time_slots").insert([
         {
             doctor_id: doctorsIds[0],
-            time_start: '2037-01-01 10:00:00+08',
-            time_end: '2037-01-01 11:00:00+08'
+            time_start: '2037-01-01 10:00:00',
+            time_end: '2037-01-01 11:00:00'
         },
         {
             doctor_id: doctorsIds[0],
-            time_start: '2037-01-02 10:00:00+08',
-            time_end: '2037-01-02 11:00:00+08'
+            time_start: '2037-01-02 10:00:00',
+            time_end: '2037-01-02 11:00:00'
         },
         {
             doctor_id: doctorsIds[0],
-            time_start: '2037-01-03 10:00:00+08',
-            time_end: '2037-01-03 11:00:00+08'
+            time_start: '2037-01-03 10:00:00',
+            time_end: '2037-01-03 11:00:00'
         },
         {
             doctor_id: doctorsIds[1],
-            time_start: '2037-01-03 10:00:00+08',
-            time_end: '2037-01-03 11:00:00+08'
+            time_start: '2037-01-03 10:00:00',
+            time_end: '2037-01-03 11:00:00'
         },
         {
             doctor_id: doctorsIds[1],
-            time_start: '2037-01-05 13:00:00+08',
-            time_end: '2037-01-05 14:00:00+08'
+            time_start: '2037-01-05 13:00:00',
+            time_end: '2037-01-05 14:00:00'
         },
         {
             doctor_id: doctorsIds[1],
-            time_start: '2037-01-05 14:00:00+08',
-            time_end: '2037-01-05 15:00:00+08'
+            time_start: '2037-01-05 14:00:00',
+            time_end: '2037-01-05 15:00:00'
         },
         {
             doctor_id: doctorsIds[1],
-            time_start: '2037-01-05 15:00:00+08',
-            time_end: '2037-01-05 16:00:00+08'
+            time_start: '2037-01-05 15:00:00',
+            time_end: '2037-01-05 16:00:00'
         },
 
 
         {
             doctor_id: doctorsIds[2],
-            time_start: '2037-01-07 18:00:00+08',
-            time_end: '2037-01-07 19:00:00+08'
+            time_start: '2037-01-07 18:00:00',
+            time_end: '2037-01-07 19:00:00'
         },
         {
             doctor_id: doctorsIds[2],
-            time_start: '2037-01-07 19:00:00+08',
-            time_end: '2037-01-07 20:00:00+08'
+            time_start: '2037-01-07 19:00:00',
+            time_end: '2037-01-07 20:00:00'
         },
 
         {
             doctor_id: doctorsIds[3],
-            time_start: '2037-02-07 18:00:00+08',
-            time_end: '2037-02-07 19:00:00+08'
+            time_start: '2037-02-07 18:00:00',
+            time_end: '2037-02-07 19:00:00'
         },
         {
             doctor_id: doctorsIds[3],
-            time_start: '2037-02-07 19:00:00+08',
-            time_end: '2037-02-07 20:00:00+08'
+            time_start: '2037-02-07 19:00:00',
+            time_end: '2037-02-07 20:00:00'
         },
     ]);
 }

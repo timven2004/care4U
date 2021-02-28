@@ -6,3 +6,8 @@
 #timeSlots{
     margin: 5px;
 }
+
+.availableTimeBtn{
+    margin: 5px;
+    width: 95%
+}

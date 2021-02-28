@@ -59,10 +59,10 @@ async function load() {
             let startTime = new Date(obj.time_start)
             let endTime = new Date(obj.time_end)
             let id = obj.id
-
+            const singleDigit = [0,1,2,3,4,5,6,7,8,9]
             return `
-            <button class="availableTime btn btn-success" id="${id}">
-            <h2>${startTime.getHours()}:00 - ${endTime.getHours()}:00</h2>
+            <button class="availableTimeBtn btn btn-success" id="${id}">
+            <h2>${startTime.getHours()}:${singleDigit.includes(startTime.getMinutes())? "0" + startTime.getMinutes() : startTime.getMinutes() } - ${endTime.getHours()}:${singleDigit.includes(endTime.getMinutes())? "0" + endTime.getMinutes():endTime.getMinutes() }</h2>
             <div class="doctor">${obj.doctor_name}</div>
             
             </button> `})
