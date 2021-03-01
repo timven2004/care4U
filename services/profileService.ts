@@ -1,11 +1,13 @@
 import Knex from 'knex'
 import { Request } from "express"
 
+
 export class ProfileService {
     private knex: Knex
     constructor(knex: Knex) {
         this.knex = knex
     }
+
 
     async createUser(body: Request['body']){
         const result = await this.knex.transaction( async (trx)=>{

@@ -7,6 +7,7 @@ export class ProfileController{
         this.profileService = profileService
     }
 
+
     async postUser(body:Request["body"]){
         const result = await this.profileService.createUser(body)
         return result

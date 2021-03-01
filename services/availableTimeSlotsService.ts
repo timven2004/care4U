@@ -1,10 +1,26 @@
 import Knex from "knex"
 import { Response } from "express"
 
+
+interface timeSlots{
+    id:number,
+    doctor_id:number,
+    time_start: string,
+    time_end: string
+    }
+
 export class AvailableTimeSlotsService {
     private knex: Knex
     constructor(knex: Knex) {
         this.knex = knex
+    }
+
+    async newAvailavleTimeSlots(timeSlots:timeSlots[]){
+        const result = await this.knex("doctors_available_time_slots").insert({
+            timeSlots
+        })
+
+        return result
     }
 
     async retrieveAvailableTimeSlots(res:Response) {

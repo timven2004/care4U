@@ -30,4 +30,12 @@ export class AvailableTimeSlotsController {
         
     }
 
+    async postAvailableTimeSlots(req:Request,res:Response){
+        try{const timeSlots= req.body.availableTimeSlots
+            const result = await this.availableTimeSlotsServices.newAvailavleTimeSlots(timeSlots)
+            res.json(result)
+        } catch (err){console.error(err)
+        res.status(502).json({message: "internal server error"})}
+    }
+
 }

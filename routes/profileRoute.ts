@@ -33,7 +33,7 @@ profileRoutes.put("/api/userProfile/:id", async (req:Request, res:Response)=>{
         res.json(result)
     } catch(err){
         console.error(err.message)
-        res.status(500).json({message:"Internal Server Error"})
+        res.status(502).json({message:"Internal Server Error"})
     }
 })
 
