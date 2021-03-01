@@ -19,4 +19,14 @@ export class AvailableTimeSlotsService {
         }
     }
 
+    async deleteAvailableTimeSlots(req:Request, res:Response ,id:number){
+        try {
+            const result = await this.knex("doctors_available_time_slots").where("doctors_available_time_slots.id",id).del();
+            res.json(result);
+        } catch (err) { console.error(err.message) 
+             res.status(500).json({message:"internal server error"})
+             return
+        }
+    }
+
 }

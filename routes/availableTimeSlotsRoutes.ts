@@ -6,8 +6,12 @@ export const availableTimeSlots = express.Router()
 
 availableTimeSlots.get("/api/availableTimeSlots/", async (req:Request, res:Response)=>{
 
-    availableTimeSlotsController.getAvailableTimeSlots(req,res)
+    availableTimeSlotsController.getAvailableTimeSlots(req,res);
 
 
+})
+
+availableTimeSlots.delete("/api/availableTimeSlots/", async (req:Request, res:Response)=>{
+    availableTimeSlotsController.deleteAvailableTimeSlots(req,res);
 })
 

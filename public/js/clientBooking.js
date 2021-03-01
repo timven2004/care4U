@@ -10,6 +10,15 @@ const fetchingData = async (userId) => {
     })
     return response.json()
 }
+const choosenTimeSlot = document.querySelector("#choosenTimeSlot")
+const choosenTimeSlotId = document.querySelector("#choosenTimeSlotId")
+
+const selectTime = async (timeSlot, timeSlotId) =>{
+    choosenTimeSlot.value = timeSlot;
+    choosenTimeSlotId.value = timeSlotId;
+}
+
+
 
 
 async function load() {
@@ -61,11 +70,11 @@ async function load() {
             let id = obj.id
 
             return `
-            <button class="availableTime btn btn-success" id="${id}">
+            <button class="timeSlots btn btn-success" id="timeSlot-${id}" onclick="selectTime("${startTime.getHours()}:00 - ${endTime.getHours()}:00" ,${id})>
             <h2>${startTime.getHours()}:00 - ${endTime.getHours()}:00</h2>
             <div class="doctor">${obj.doctor_name}</div>
-            
-            </button> `})
+            </button>
+            `})
 
         timeSlotsStr = timeSlotsStr.join("")
 
@@ -75,7 +84,7 @@ async function load() {
         
         ${timeSlotsStr}
         `
-
+        
         
 
     })

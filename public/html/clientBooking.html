@@ -156,12 +156,20 @@
         <div id="my-calendar"></div>
     </section>
     <section>
-        <h1>選擇時段：</h1>
-        <div id="timeSlots">
-            
+        <div id="timeSlotsContainer">
+            <h1 class="chooseTime">選擇時段：</h1>
+
+            <div id="timeSlots">
+                </div>
         </div>
     </section>
+    <form action="/api/availableTimeSlots/" method="DELETE">
+        <label for="choosenTimeSlot">已選時段</label>
+        <input type="text" id="choosenTimeSlot" name="timeSlots" class="choosenTimeSlot">
+        <input type="text" id="choosenTimeSlotId" name="timeSlotsId">
 
+        <button class="btn btn-danger" type="submit">確認預約</button>
+    </form>
 
     <footer>
         <div class="container">
