@@ -10,12 +10,12 @@ function timeConverter(UNIX_timestamp){
     var hour = `0${a.getHours()}`.substr(-2);
     var min = `0${a.getMinutes()}`.substr(-2);
     var sec = `0${a.getSeconds()}`.substr(-2);
-    var time = `${year}-${month}-${date}T${hour}:${min}` ;
+    var time = `${year}-${month}-${date}T${hour}:00` ;
     return time;
   }
   const timeNow = (timeConverter(Date.now()));
   
-
+const handleClick = () =>{ console.log("clicked")}
 
 const submissionForm = document.querySelector("#submissionForm");
 let formStr = ""
@@ -23,12 +23,21 @@ for (let i =0;i<7;i++){
     formStr=formStr + `
     <div>
     <label for="choosenTimeSlot">時段</label>
-    <input type="datetime-local" id="choosenTimeSlotId" name="timeStart[${i}]" step="3600" min=${timeNow}>
-    <input type="datetime-local" id="choosenTimeSlotId" name="timeEnd[${i}]" step="3600" min=${timeNow}>
+    <input type="datetime-local" class="timeStart" name="timeStart[${i}]" step="3600" min=${timeNow}>
+    <input type="datetime-local" class="timeEnd" name="timeEnd[${i}]" step="3600" min=${timeNow} onchange=handleClick()>
     </div>
     `
     
 }
+
+
+
+// for (let i =0;i<endTimes.length-1;i++){
+// endTimes[i].addEventListener("click",()=>{
+//     console.log("clicked")
+// })
+// }
+
 
 formStr = formStr + `        <button class="btn btn-danger" type="submit">確認提交</button>
 `
