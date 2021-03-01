@@ -1,6 +1,6 @@
 import Knex from 'knex'
 import { Request } from "express"
-
+import {hashPassword} from "../hash"
 
 export class ProfileService {
     private knex: Knex
@@ -15,7 +15,7 @@ export class ProfileService {
                 "name": body["name"],
                 "email": body["email"],
                 "telephone": body["telephone"],
-                "password": body["password"],
+                "password": hashPassword(body["password"]),
                 "created_at": trx.fn.now(),
                 "updated_at": trx.fn.now()
             })
@@ -48,7 +48,7 @@ async updateUserProfile(id: number, body: Request['body']){
                 "name": body["name"],
                 "email": body["email"],
                 "telephone": body["telephone"],
-                "password": body["password"],
+                "password": hashPassword(body["password"]),
                 "updated_at": this.knex.fn.now()
             })
          .returning(["name","email","telephone","updated_at"]);
@@ -73,7 +73,8 @@ async createDoctor(body: Request['body']){
             "name": body["name"],
             "email": body["email"],
             "telephone": body["telephone"],
-            "password": body["password"],
+            "password": hashPassword(body["password"]),
+            "description":body["description"],
             "created_at": trx.fn.now(),
             "updated_at": trx.fn.now()
         })
@@ -104,7 +105,9 @@ async updateDoctorProfile(id: number, body: Request['body']){
                   "email": body["email"],
                   "telephone": body["telephone"],
                   "password": body["password"],
-                  "updated_at": this.knex.fn.now()
+                  "updated_at": this.knex.fn.now(),
+                  "description":body["description"],
+
               })
            .returning(["name","email","telephone","updated_at"]);
       })
