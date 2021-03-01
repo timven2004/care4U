@@ -11,7 +11,7 @@ availableTimeSlots.get("/api/availableTimeSlots/", async (req:Request, res:Respo
 
 })
 
-availableTimeSlots.delete("/api/availableTimeSlots/", async (req:Request, res:Response)=>{
-    availableTimeSlotsController.deleteAvailableTimeSlots(req,res);
+availableTimeSlots.post("/api/book/", async (req:Request, res:Response)=>{
+    availableTimeSlotsController.bookAvailableTimeSlots(req,res);
 })
 

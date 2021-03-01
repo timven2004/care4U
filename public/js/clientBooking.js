@@ -52,6 +52,10 @@ async function load() {
     calendar.addEventListener("calendar-select", (ev) => {
         console.log(myCalendar.getSelected());
 
+        choosenTimeSlot.value = ``;
+        choosenTimeSlotId.value = null;
+    
+
         const availableDatesArray = data.filter(obj => {
             return obj.time_start.slice(0, 10) == myCalendar.getSelected()
         })

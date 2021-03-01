@@ -3,11 +3,12 @@ import { hashPassword } from "../hash";
 
 export async function seed(knex: Knex): Promise<void> {
     // Deletes ALL existing entries
+    await knex("questionnaires").del();
     await knex("doctors_available_time_slots").del();
     await knex("doctors").del();
     await knex("users").del();
     // Inserts seed entries
-    await knex("users").insert([
+    const usersIds = await knex("users").insert([
         {
             name: "jason",
             password: await hashPassword("1234"),
@@ -26,7 +27,36 @@ export async function seed(knex: Knex): Promise<void> {
             email: "gordon@gordon.com",
             telephone: "34567890",
         },
-    ]);
+    ]).returning("id");
+
+    await knex("questionnaires").insert([
+        {
+            user_id: usersIds[0],
+            insomnia: 2,
+            depressed:3,
+            panic:4,
+            other_symptoms:0
+
+        },
+
+        {
+            user_id: usersIds[1],
+            insomnia: 5,
+            depressed:3,
+            panic:4,
+            other_symptoms:0
+
+        },
+
+        {
+            user_id: usersIds[1],
+            insomnia: 7,
+            depressed:3,
+            panic:4,
+            other_symptoms:0
+
+        },
+    ])
 
     const doctorsIds = await knex("doctors").insert([
         {

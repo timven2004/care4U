@@ -12,10 +12,10 @@ export class AvailableTimeSlotsController {
         await this.availableTimeSlotsServices.retrieveAvailableTimeSlots(req, res);
     }
 
-    async deleteAvailableTimeSlots(req:Request, res:Response){
+    async bookAvailableTimeSlots(req:Request, res:Response){
         const id = req.body.timeSlotsId;
         console.log("timeSlotsId= " + id);
-        await this.availableTimeSlotsServices.deleteAvailableTimeSlots(req,res,id);
+        await this.availableTimeSlotsServices.bookAvailableTimeSlots(req,res);
     }
 
 }
