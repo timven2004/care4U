@@ -1,5 +1,8 @@
+const params = new URLSearchParams(document.location.search)
+const doctorId = params.get("doctorId")
+
 const fetchingData = async () => {
-    const response = await fetch(`/api/availableTimeSlots/`, {
+    const response = await fetch(`/api/availableTimeSlotsFollowUp/${doctorId}`, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         headers: {
             'Content-Type': 'application/json'

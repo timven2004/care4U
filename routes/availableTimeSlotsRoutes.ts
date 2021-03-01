@@ -6,7 +6,13 @@ export const availableTimeSlots = express.Router()
 
 availableTimeSlots.get("/api/availableTimeSlots/", async (req:Request, res:Response)=>{
 
-    availableTimeSlotsController.getAvailableTimeSlots(req,res);
+    availableTimeSlotsController.getAvailableTimeSlots(req,res);})
+
+    
+availableTimeSlots.get("/api/availableTimeSlotsFollowUp/:doctorId", async (req:Request, res:Response)=>{
+    let doctorIdstr = req.params.doctorId;
+    let doctorId = parseInt(doctorIdstr)
+    availableTimeSlotsController.getAvailableTimeSlotsFollowUp(req,res,doctorId);
 
 
 })
@@ -14,4 +20,3 @@ availableTimeSlots.get("/api/availableTimeSlots/", async (req:Request, res:Respo
 availableTimeSlots.post("/api/book/", async (req:Request, res:Response)=>{
     availableTimeSlotsController.bookAvailableTimeSlots(req,res);
 })
-
