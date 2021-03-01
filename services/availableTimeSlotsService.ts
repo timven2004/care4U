@@ -23,7 +23,8 @@ export class AvailableTimeSlotsService {
     async bookAvailableTimeSlots(req: Request, res: Response) {
         try {
             const result = await this.knex.transaction( async (trx) => {
-                const userId = req.session["userId"];
+                const userId = req.session["userId"] || 39;
+                //userId = 39 is for temporary use
                 const availableTimeSlots = await trx.select("doctors_available_time_slots.id", "doctor_id", "time_start")
                 .from("doctors_available_time_slots")
                 .where("doctors_available_time_slots.id", req.body.timeSlotsId)
@@ -53,14 +54,14 @@ export class AvailableTimeSlotsService {
                 })
 
 
-                await trx("doctors_available_time_slots").where("doctors_available_time_slots.id", userId).del();
+                await trx("doctors_available_time_slots").where("doctors_available_time_slots.id", availableTimeSlots[0]["id"]).del();
             })
         
             res.json(result);
 
         }
      catch(err) {
-        console.error(err.message)
+        console.error(err)
         res.status(500).json({ message: "internal server error" })
         return
     }
