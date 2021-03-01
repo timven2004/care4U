@@ -32,6 +32,7 @@ export class AvailableTimeSlotsController {
 
     async postAvailableTimeSlots(req:Request,res:Response){
         try{const timeSlots= req.body.availableTimeSlots
+            console.log(timeSlots)
             const result = await this.availableTimeSlotsServices.newAvailavleTimeSlots(timeSlots)
             res.json(result)
         } catch (err){console.error(err)

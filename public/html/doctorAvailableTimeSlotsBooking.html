@@ -153,22 +153,15 @@
     </header>
 
     <section>
-        <div id="my-calendar"></div>
-    </section>
-    <section>
         <div id="timeSlotsContainer">
-            <h1 class="chooseTime">輸入應診空閒時段：</h1>
+            <h1 class="chooseTime">輸入應診空閒時段(只限整數小時)：</h1>
 
             <div id="timeSlots">
                 </div>
         </div>
     </section>
-    <form action="/api/book/" method="POST">
-        <label for="choosenTimeSlot">已選時段</label>
-        <input type="text" id="choosenTimeSlot" name="timeSlots" class="choosenTimeSlot">
-        <input type="text" id="choosenTimeSlotId" name="timeSlotsId">
-
-        <button class="btn btn-danger" type="submit">確認提交</button>
+    <form action="/api/availableTimeSlots" method="POST" id="submissionForm">
+        
     </form>
 
     <footer>
