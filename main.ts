@@ -12,6 +12,9 @@ import {paymentRoutes} from "./routes/paymentRoutes"
 import expressSession from 'express-session';
 import { QuestionnaireService } from './services/questionnaireServices';
 import {QuestionnaireController} from "./controllers/questionnaireController"
+import {AvailableTimeSlotsService} from "./services/availableTimeSlotsService"
+import {AvailableTimeSlotsController} from "./controllers/availableTimeSlotsController"
+import {availableTimeSlots} from "./routes/availableTimeSlotsRoutes"
 dotenv.config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -34,6 +37,9 @@ export const profileService = new ProfileService(knex)
 export const profileController = new ProfileController(profileService)
 export const paymentServices = new PaymentServices(process.env.YOUR_DOMAIN||"http://localhost:8080", stripe, knex)
 export const paymentController = new PaymentController(paymentServices)
+export const availableTimeSlotsService = new AvailableTimeSlotsService(knex)
+export const availableTimeSlotsController = new AvailableTimeSlotsController(availableTimeSlotsService)
+
 
 // heady 
 const questionnaireService = new QuestionnaireService(knex)
@@ -47,6 +53,7 @@ app.use(express.static('public'));
 
 app.use(profileRoutes)
 app.use(paymentRoutes)
+app.use(availableTimeSlots)
 
 app.use((req,res)=>{
     res.status(404).json({message:"404 Not found"})

@@ -1,0 +1,34 @@
+.tavo-calendar__day_highlight{
+    color:#121212 !important;
+    font-weight: 800;
+}
+
+.availableTime{
+    margin: 5px;
+    display: block;
+}
+
+.timeSlots{
+    width: 90%;
+    margin: 5px
+}
+
+#timeSlotsContainer{
+    margin:20px;
+    display: block;
+}
+
+#timeSlots{
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+.chooseTime{
+    text-align: center;
+}
+
+.availableTimeBtn{
+    margin: 5px;
+    width: 95%
+}
