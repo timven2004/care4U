@@ -27,3 +27,8 @@
 .chooseTime{
     text-align: center;
 }
+
+.availableTimeBtn{
+    margin: 5px;
+    width: 95%
+}
