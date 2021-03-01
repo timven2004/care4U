@@ -1,3 +1,4 @@
+import { questionnaireRoutes } from './routes/questionnaireRoute';
 import express from "express"
 import Knex from 'knex';
 import {ProfileService} from "./services/profileService"
@@ -9,6 +10,8 @@ import {PaymentController} from "./controllers/paymentController"
 import {PaymentServices} from "./services/paymentServices"
 import {paymentRoutes} from "./routes/paymentRoutes"
 import expressSession from 'express-session';
+import { QuestionnaireService } from './services/questionnaireServices';
+import {QuestionnaireController} from "./controllers/questionnaireController"
 dotenv.config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -31,6 +34,11 @@ export const profileService = new ProfileService(knex)
 export const profileController = new ProfileController(profileService)
 export const paymentServices = new PaymentServices(process.env.YOUR_DOMAIN||"http://localhost:8080", stripe, knex)
 export const paymentController = new PaymentController(paymentServices)
+
+// heady 
+const questionnaireService = new QuestionnaireService(knex)
+export const questionnaireController = new QuestionnaireController(questionnaireService)
+app.use(questionnaireRoutes)
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

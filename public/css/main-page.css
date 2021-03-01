@@ -30,7 +30,7 @@
 
 footer {
     min-height: 50px;
-    background-color: #FF7F50;
+    background-color: #ee6f57;
     color: #ffffff;
 }
 
@@ -83,6 +83,10 @@ p {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
+    .carousel-inner .carousel-item img {
+        max-height: 50vh;
+    }
 }
 
 #logo {
@@ -106,23 +110,25 @@ p {
 /* .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     width: 100%;
     height: auto;
-}
+} */
 
-.carousel-inner > .item > img {
+/* .carousel-inner > .item > img {
     width:640px;
     height:360px;
   } */
 
-  /* .carousel {
+/* 
+.carousel {
     width:100%;
     height:360px;
   } */
 
-  .carousel-inner > .carousel-item > img {
-    width:100%;
+
+.carousel-inner .carousel-item img {
+    width: 100vw;
     height: 100vh;
-  }
-  
+}
+
 
 #doctor-login-form .submit {
     margin-top: 10px;
