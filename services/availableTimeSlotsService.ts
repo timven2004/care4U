@@ -14,14 +14,30 @@ export class AvailableTimeSlotsService {
         this.knex = knex
     }
 
-    async newAvailavleTimeSlots(breakedTimeSlots: timeSlotsWithOutId[]) {
+    async newAvailavleTimeSlots(breakedTimeSlots: timeSlotsWithOutId[], doctorId: number) {
         const result = await this.knex.transaction(async (trx) => {
-
-
-            trx("doctors_available_time_slots").insert({
-                breakedTimeSlots
-            })
-    
+            try {
+                //check if there is repeated start_time
+                const existingFreeTime = await trx("doctors_available_time_slots").select("time_start", "doctor_id").where("doctor_id", doctorId)
+                let toBeInputed: timeSlotsWithOutId[] = []
+                for (let obj of breakedTimeSlots) {
+                    let repeated = false;
+                    for (let freeTime of existingFreeTime) {
+                        let tempFreeTime = new Date(freeTime.time_start)
+                        if (obj.time_start == tempFreeTime.toISOString()) {
+                            repeated = true
+                        }
+                    }
+                    if (!repeated) { toBeInputed.push(obj) }
+                }
+                // insert into database
+                return await trx("doctors_available_time_slots").insert(
+                    toBeInputed
+                ).returning("*");
+            } catch (err) {
+                console.error(err)
+                return { message: "internal Server error" }
+            }
         })
 
         return result
