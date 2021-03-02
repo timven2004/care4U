@@ -15,7 +15,6 @@ function timeConverter(UNIX_timestamp){
   }
   const timeNow = (timeConverter(Date.now()));
   
-const handleClick = () =>{ console.log("clicked")}
 
 const submissionForm = document.querySelector("#submissionForm");
 let formStr = ""
@@ -24,11 +23,13 @@ for (let i =0;i<7;i++){
     <div>
     <label for="choosenTimeSlot">時段</label>
     <input type="datetime-local" class="timeStart" name="timeStart[${i}]" step="3600" min=${timeNow}>
-    <input type="datetime-local" class="timeEnd" name="timeEnd[${i}]" step="3600" min=${timeNow} onchange=handleClick()>
+    <input type="datetime-local" class="timeEnd" name="timeEnd[${i}]" step="3600" min=${timeNow}>
     </div>
     `
     
 }
+
+
 
 
 
@@ -39,6 +40,6 @@ for (let i =0;i<7;i++){
 // }
 
 
-formStr = formStr + `        <button class="btn btn-danger" type="submit">確認提交</button>
+formStr = formStr + `<button class="btn btn-danger" type="submit">確認提交</button>
 `
-submissionForm.innerHTML = formStr
+submissionForm.innerHTML=formStr

@@ -2,12 +2,11 @@ import Knex from "knex"
 import { Response } from "express"
 
 
-interface timeSlots{
-    id:number,
-    doctor_id:number,
+interface timeSlotsWithOutId {
+    doctor_id: number,
     time_start: string,
     time_end: string
-    }
+}
 
 export class AvailableTimeSlotsService {
     private knex: Knex
@@ -15,15 +14,20 @@ export class AvailableTimeSlotsService {
         this.knex = knex
     }
 
-    async newAvailavleTimeSlots(timeSlots:timeSlots[]){
-        const result = await this.knex("doctors_available_time_slots").insert({
-            timeSlots
+    async newAvailavleTimeSlots(breakedTimeSlots: timeSlotsWithOutId[]) {
+        const result = await this.knex.transaction(async (trx) => {
+
+
+            trx("doctors_available_time_slots").insert({
+                breakedTimeSlots
+            })
+    
         })
 
         return result
     }
 
-    async retrieveAvailableTimeSlots(res:Response) {
+    async retrieveAvailableTimeSlots(res: Response) {
         try {
             const result = await this.knex.select("doctors_available_time_slots.id", "doctor_id", "time_start", "time_end", "name as doctor_name")
                 .from("doctors_available_time_slots")
@@ -36,7 +40,7 @@ export class AvailableTimeSlotsService {
         }
     }
 
-    async retrieveAvailableTimeSlotsFollowUp(res:Response, doctorId:number) {
+    async retrieveAvailableTimeSlotsFollowUp(res: Response, doctorId: number) {
         try {
             const result = await this.knex.select("doctors_available_time_slots.id", "doctor_id", "time_start", "time_end", "name as doctor_name")
                 .from("doctors_available_time_slots")
@@ -50,13 +54,13 @@ export class AvailableTimeSlotsService {
         }
     }
 
-    async bookAvailableTimeSlots(res:Response ,userId:number, timeSlotId:number ) {
+    async bookAvailableTimeSlots(res: Response, userId: number, timeSlotId: number) {
         try {
-            const result = await this.knex.transaction( async (trx) => {
+            const result = await this.knex.transaction(async (trx) => {
                 const availableTimeSlots = await trx.select("doctors_available_time_slots.id", "doctor_id", "time_start")
-                .from("doctors_available_time_slots")
-                .where("doctors_available_time_slots.id", timeSlotId)
-                console.dir("availableTimeSlots = "+  availableTimeSlots)
+                    .from("doctors_available_time_slots")
+                    .where("doctors_available_time_slots.id", timeSlotId)
+                console.dir("availableTimeSlots = " + availableTimeSlots)
                 // res.json(availableTimeSlots)
                 // availableTimeSlots
                 //[
@@ -67,30 +71,30 @@ export class AvailableTimeSlotsService {
                 //     }
                 //     ]
 
-                const questionnaires = await trx.select("id","user_id")
-                .from("questionnaires")
-                .where("user_id", userId)
+                const questionnaires = await trx.select("id", "user_id")
+                    .from("questionnaires")
+                    .where("user_id", userId)
 
 
                 await trx("bookings").insert({
-                    time:availableTimeSlots[0].time_start,
-                    user_id:userId,
-                    doctor_id:availableTimeSlots[0].doctor_id,
+                    time: availableTimeSlots[0].time_start,
+                    user_id: userId,
+                    doctor_id: availableTimeSlots[0].doctor_id,
                     is_active: true,
-                    questionnaire_id: questionnaires[questionnaires.length-1].id||0
+                    questionnaire_id: questionnaires[questionnaires.length - 1].id || 0
                 })
 
 
                 await trx("doctors_available_time_slots").where("doctors_available_time_slots.id", availableTimeSlots[0]["id"]).del();
             })
-        
+
             return result
         }
-     catch(err) {
-        console.error(err)
-        res.status(500).json({ message: "internal server error" })
-        return
+        catch (err) {
+            console.error(err)
+            res.status(500).json({ message: "internal server error" })
+            return
+        }
     }
-}
 
 }

@@ -20,7 +20,7 @@ availableTimeSlots.post("/api/book/", async (req:Request, res:Response)=>{
 })
 
 availableTimeSlots.post("/api/availableTimeSlots", async (req:Request, res:Response)=>{
-    console.log(req.body)
+    availableTimeSlotsController.postAvailableTimeSlots(req,res)
 
     // availableTimeSlotsController.postAvailableTimeSlots(req,res);
 })
