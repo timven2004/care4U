@@ -6,10 +6,14 @@ export class QuestionnaireService {
         this.knex = knex
     }
 
-    async createUserQuestionnaire(body: any) {
-        const {insomnia, depressed, panic, other_symptoms} = body;
+    async createUserQuestionnaire(body: any, userId: number) {
+        const { insomnia, depressed, panic, other_symptoms } = body;
         return await this.knex.insert({
-            insomnia, depressed, panic, other_symptoms
+            insomnia: insomnia,
+            depressed: depressed,
+            panic: panic,
+            other_symptoms: other_symptoms,
+            user_id: userId
         }).into('questionnaires').returning('id');
     }
 }
