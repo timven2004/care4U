@@ -15,6 +15,7 @@ export class ProfileController{
 
     async getUser(id:number, withPassword:boolean=false){
         const result = await this.profileService.getUserProfile(id, withPassword)
+         result.push(await this.profileService.getUserBookingHistory(id))
         return result
     }
 

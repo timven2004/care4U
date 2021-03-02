@@ -7,6 +7,7 @@ export class QuestionnaireService {
     }
 
     async createUserQuestionnaire(body: any, userId: number) {
+        console.log(body)
         const { insomnia, depressed, panic, other_symptoms } = body;
         return await this.knex.insert({
             insomnia: insomnia,

@@ -44,7 +44,6 @@ export const availableTimeSlotsController = new AvailableTimeSlotsController(ava
 // heady 
 const questionnaireService = new QuestionnaireService(knex)
 export const questionnaireController = new QuestionnaireController(questionnaireService)
-app.use(questionnaireRoutes)
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -54,6 +53,8 @@ app.use(express.static('public'));
 app.use(profileRoutes)
 app.use(paymentRoutes)
 app.use(availableTimeSlots)
+app.use(questionnaireRoutes)
+
 
 app.use((req,res)=>{
     res.status(404).json({message:"404 Not found"})

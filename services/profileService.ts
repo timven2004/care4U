@@ -39,6 +39,12 @@ export class ProfileService {
         throw "User Not Found from profileServices";
     }
 
+    async getUserBookingHistory(id: number){
+        const result = await this.knex.select("time","doctor_id","is_active","questionnaire_id","doctors.name","doctors.telephone")
+        .from("bookings").innerJoin("doctors","doctor_id","doctors.id")
+        return result
+    }
+
 async updateUserProfile(id: number, body: Request['body']){
 
     const result = await this.knex.transaction(async (trx) => {
