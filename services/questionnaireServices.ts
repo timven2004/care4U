@@ -17,4 +17,8 @@ export class QuestionnaireService {
             user_id: userId
         }).into('questionnaires').returning('id');
     }
+
+    async getUserQuestionnaire(id:number){
+        return await this.knex.select().from("questionnaire").where("id", id)
+    }
 }

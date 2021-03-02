@@ -29,13 +29,14 @@ export class ProfileController{
         return result
     }
 
-    async getDoctor(id:number, withPassword:boolean=false){
-        const result = await this.profileService.getDoctorProfile(id, withPassword)
+    async getDoctor(doctorId:number, withPassword:boolean=false){
+        const result = await this.profileService.getDoctorProfile(doctorId, withPassword)
+        result.push(await this.profileService.getDoctorBookingHistory(doctorId))
         return result
     }
 
-    async putDoctor(id:number, body:Request["body"]){
-        const result = await this.profileService.updateDoctorProfile(id, body)
+    async putDoctor(doctorId:number, body:Request["body"]){
+        const result = await this.profileService.updateDoctorProfile(doctorId, body)
         return result
     }
 }

@@ -41,7 +41,7 @@ export class ProfileService {
 
     async getUserBookingHistory(id: number){
         const result = await this.knex.select("time","doctor_id","is_active","questionnaire_id","doctors.name","doctors.telephone")
-        .from("bookings").innerJoin("doctors","doctor_id","doctors.id")
+        .from("bookings").innerJoin("doctors","doctor_id","doctors.id").where("bookings.user_id",id)
         return result
     }
 
@@ -88,8 +88,8 @@ async createDoctor(body: Request['body']){
     return result
 }
 
-async getDoctorProfile(id: number, withPassword: boolean = false){
-    const result = await this.knex.select("name", "email", "telephone", "password", "created_at", "updated_at", "description").from("doctors").where("id", id)
+async getDoctorProfile(doctorId: number, withPassword: boolean = false){
+    const result = await this.knex.select("name", "email", "telephone", "password", "created_at", "updated_at", "description").from("doctors").where("id", doctorId)
     if (withPassword) {
         return result[0]
     }
@@ -101,11 +101,22 @@ async getDoctorProfile(id: number, withPassword: boolean = false){
 
 }
 
-async updateDoctorProfile(id: number, body: Request['body']){
+async getDoctorBookingHistory(doctorId: number){
+    const result = await this.knex.select(
+        "questionnaires.insomnia","questionnaires.depressed","questionnaires.panic","questionnaires.other_symptoms","bookings.time","bookings.user_id","bookings.is_active","bookings.questionnaire_id","users.name","users.telephone","bookings.questionnaire_id")
+    .from("bookings")
+    .innerJoin("users","bookings.user_id","users.id")
+    .innerJoin("questionnaires","questionnaires.id","bookings.questionnaire_id")
+    .where("bookings.doctor_id",doctorId)
+    
+    return result
+}
+
+async updateDoctorProfile(doctorId: number, body: Request['body']){
 
     const result = await this.knex.transaction(async (trx) => {
         return trx("doctors")
-              .where("id", id)
+              .where("id", doctorId)
               .update({
                   "name": body["name"],
                   "email": body["email"],
