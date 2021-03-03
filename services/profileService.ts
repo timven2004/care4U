@@ -14,7 +14,8 @@ export class ProfileService {
         const user = await this.knex
         .select<User>(
             "email",
-            "password"
+            "password",
+            "id"
         )
         .from("users")
         .where("email", email)

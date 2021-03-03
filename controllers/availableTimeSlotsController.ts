@@ -34,12 +34,12 @@ export class AvailableTimeSlotsController {
         const timeSlotId = req.body.timeSlotsId
         //userId = 39 is for temporary use
 
-        const userId = req.session["userId"] || 39;
+        const userId = req.session["userId"];
 
         console.log("timeSlotsId= " + id);
         const transactionRecordId= await this.availableTimeSlotsServices.bookAvailableTimeSlots(res, userId, timeSlotId);
         req.session["transactionRecordId"] = transactionRecordId;
-        res.redirect("/html/paymentPreview.html")
+        res.redirect("/user/paymentPreview.html")
     }
 
     async postAvailableTimeSlots(req: Request, res: Response) {
@@ -86,7 +86,7 @@ export class AvailableTimeSlotsController {
             console.log(breakedTimeSlots);
             //122 is for Temporary Use
             await this.availableTimeSlotsServices.newAvailavleTimeSlots(breakedTimeSlots, req.session["doctorId"] || 122)
-            res.redirect(`/doctorProfile.html?doctorId=${req.session["doctorId"]}`)
+            res.redirect(`/doctor/doctorProfile.html?doctorId=${req.session["doctorId"]}`)
         } catch (err) {
             console.error(err)
             res.status(502).json({ message: "internal server error" })

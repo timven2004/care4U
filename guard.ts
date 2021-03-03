@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 
 export function isLoggedInAPI(req: Request, res: Response, next: NextFunction) {
-    if (req.session?.["user"]) {
+    if (req.session?.["userId"]) {
         next();
     } else {
         // res.redirect("/login.html");
@@ -14,7 +14,8 @@ export function isLoggedInHTML(
     res: Response,
     next: NextFunction
 ) {
-    if (req.session?.["user"]) {
+    console.log(req.session)
+    if (req.session?.["userId"]) {
         next();
     } else {
         res.redirect("/main-page.html");

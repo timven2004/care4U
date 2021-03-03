@@ -22,8 +22,8 @@ export class PaymentServices {
             payment_method_types: ['card'],
             line_items,
             mode: 'payment',
-            success_url: `${this.Your_Domain}/html/paymentSuccess.html`,
-            cancel_url: `${this.Your_Domain}/html/paymentCancelled.html`,
+            success_url: `${this.Your_Domain}/user/paymentSuccess.html`,
+            cancel_url: `${this.Your_Domain}/user/paymentCancelled.html`,
             
         });
         res.json({ id: session.id });} catch (err){

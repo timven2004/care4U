@@ -71,6 +71,12 @@ function userLogin(){
         } else if ( res.status === 401 ){
             alert(result.message); 
         }
+        // if ( res.status === 200 ){
+        //     userLoginForm.reset();
+        //     window.location = "./html/main-page.html"
+        // } else if ( res.status === 401 ){
+        //     alert(result.message); 
+        // }
     })
 }
 userLogin()

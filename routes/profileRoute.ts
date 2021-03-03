@@ -17,11 +17,10 @@ profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
     }
 })
 
-profileRoutes.get("/api/userProfile/:userId", async (req:Request, res:Response)=>{
+profileRoutes.get("/api/userProfile/", async (req:Request, res:Response)=>{
     try{
-        const idString=req.session["userId"]||req.params.userId
-        const id = parseInt(idString)
-        res.json(await profileController.getUser(id, false))    
+        console.log(req.session)
+        res.json(await profileController.getUser(req.session["userId"], false))    
     } catch(err){
         console.error(err.message)
         res.status(502).json({message:"Internal Server Error"})
