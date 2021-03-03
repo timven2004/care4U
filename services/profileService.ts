@@ -1,8 +1,7 @@
 import Knex from "knex";
 import { Request } from "express";
 import { hashPassword } from "../hash";
-import { User } from "./model"
-
+import { User, Doctor } from "./model";
 
 export class ProfileService {
     private knex: Knex;
@@ -12,17 +11,12 @@ export class ProfileService {
 
     async getUserByEmail(email: any, withPassword: boolean = false) {
         const user = await this.knex
-        .select<User>(
-            "email",
-            "password",
-            "id"
-        )
-        .from("users")
-        .where("email", email)
-        .first();
+            .select<User>("email", "password", "id")
+            .from("users")
+            .where("email", email)
+            .first();
         return user;
     }
-
 
     async createUser(body: Request["body"]) {
         const result = await this.knex.transaction(async (trx) => {
@@ -193,5 +187,14 @@ export class ProfileService {
         //             "password":body["password"],
         //             "description":body["description"],
         //             "updated_at":this.knex.fn.now()})
+    }
+
+    async getDoctorByEmail(email: any, withPassword: boolean = false) {
+        const doctor = await this.knex
+            .select<Doctor>("email", "password", "id")
+            .from("doctors")
+            .where("email", email)
+            .first();
+        return doctor;
     }
 }

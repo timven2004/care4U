@@ -4,7 +4,7 @@ import {profileController} from "../main"
 export const profileRoutes = express.Router();
 
 
-profileRoutes.post("/api/userLogin",async (req:Request,res:Response)=> await profileController.login(req,res))
+profileRoutes.post("/api/userLogin",async (req:Request,res:Response)=> await profileController.userLogin(req,res))
 
 
 profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
@@ -33,6 +33,7 @@ profileRoutes.put("/api/userProfile/", async (req:Request, res:Response)=>{
         const id = parseInt(idString)
         const result = await profileController.putUser(req.session["userId"], req.body) 
         res.json(result)
+        console.log(id)
     } catch(err){
         console.error(err.message)
         res.status(502).json({message:"Internal Server Error"})
@@ -40,28 +41,10 @@ profileRoutes.put("/api/userProfile/", async (req:Request, res:Response)=>{
 })
 
 
-profileRoutes.get("/api/userLogout", async (req:Request, res:Response)=>{
-    try{
-        const idString=req.params.id
-        const id = parseInt(idString)
-        res.json(await profileController.getUser(id, req.body))  
-    } catch(err){
-        console.error(err.message)
-        res.status(502).json({message:"Internal Server Error"})
-    }
-    
-})
+profileRoutes.get("/api/userLogout", async (req:Request, res:Response)=> await profileController.userLogout(req, res))
 
 
-profileRoutes.post("/api/doctorLogin", async (req:Request, res:Response) =>{
-    try{
-        res.json(await profileController.postDoctor(req.body))
-
-    }catch(err){
-        console.error(err.message)
-        res.status(502).json({message:"Internal Server Error"})
-    }
-})
+profileRoutes.post("/api/doctorLogin",async (req:Request,res:Response)=> await profileController.doctorLogin(req,res))
 
 
 profileRoutes.post("/api/createDoctor", async (req:Request, res:Response)=>{
@@ -94,14 +77,4 @@ profileRoutes.put("/api/doctorProfile/", async (req:Request, res:Response)=>{
 })
 
 
-profileRoutes.get("/api/doctorLogout", async (req:Request, res:Response)=>{
-    try{
-        const idString=req.params.id
-        const id = parseInt(idString)
-        res.json(await profileController.getDoctor(id, req.body))  
-    } catch(err){
-        console.error(err.message)
-        res.status(502).json({message:"Internal Server Error"})
-    }
-    
-})
+profileRoutes.get("/api/doctorLogout", async (req:Request, res:Response)=> await profileController.doctorLogout(req, res))

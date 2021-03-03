@@ -112,6 +112,11 @@ p {
     height: 100vh;
 }
 
+.flow .workflow img  {
+    width: 100vw;
+    height: 100vh;
+}
+
 #doctor-reg-or-login-form .submit {
     margin-top: 10px;
     padding: 5px 0;
@@ -146,7 +151,7 @@ p {
     margin-bottom: 5px;
 }
 
-#login-response.form-submit-response {
+/* #login-response.form-submit-response {
     display: none;
     min-height: 50px;
     color: #fff;
@@ -196,7 +201,7 @@ p {
     border-radius: 0.25rem;
     color: #fff;
     font-weight: bold;
-}
+} */
 
 #reg-login-switch {
     text-align: end;
@@ -230,29 +235,29 @@ p {
     margin: 8px;
 }
 
-/* #myAccount #myAccountItems a {
+/* #myUserAccount #userAccountItems a {
     display: flex;
     justify-content: flex-start;
 }
-#myAccount #myAccountItems i {
+#myUserAccount #userAccountItems i {
     width: 20%;
     display: flex;
     justify-content: flex-start;
 }
-#myAccount #myAccountItems a,
-#myAccount #myAccountItems i {
+#myUserAccount #userAccountItems a,
+#myUserAccount #userAccountItems i {
     margin: 5px 10px;
 }
-#myAccount #myAccountItems a:hover {
+#myUserAccount #userAccountItems a:hover {
     color: #000;
     background-color: transparent;
 }
-#myAccount #logout {
+#myUserAccount #logout {
     display: flex;
     justify-content: center !important;
 }
 @media screen and (max-width: 1023px) {
-    #myAccountItems {
+    #userAccountItems {
         background: #f5f5f5;
     }
 } */
@@ -292,4 +297,3 @@ label {
     align-items: center;
     border-radius: 12px;
 }
-

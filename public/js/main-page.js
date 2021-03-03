@@ -6,13 +6,13 @@ const switchRegLoginBtn = document.querySelector("#reg-login-switch a");
 const switchDocRegLoginBtn = document.querySelector("#reg-login-switch1 a");
 let fillingLoginForm = true;
 let fillingDoctorLoginForm = true;
-let isLoggedIn = false;
+let isLoggedInUSERHTML = false;
 
 
 
 // User Registration
-function userRegistrationFormSubmit() { 
-    userRegForm.addEventListener("submit", async function(event) {
+function userRegistrationFormSubmit() {
+    userRegForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const form = this;
@@ -23,60 +23,54 @@ function userRegistrationFormSubmit() {
         formObject["tel"] = userRegForm.reg_telephone.value;
         formObject["password"] = userRegForm.reg_password.value;
 
-        const res = await fetch ("/api/createUser", {
-            method: "POST", 
+        const res = await fetch("/api/createUser", {
+            method: "POST",
             headers: {
-                "Content-Type":"application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=utf-8"
             },
             body: JSON.stringify(formObject)
         })
 
         const result = await res.json();
         console.log(result);
-        if ( res.status === 200 ){
+        if (res.status === 200) {
             userRegForm.reset();
             window.location = "/"
-        } else if ( res.status === 401 ){
-            alert(result.message); 
+        } else if (res.status === 401) {
+            alert(result.message);
         }
     })
 
 }
-userRegistrationFormSubmit() 
+userRegistrationFormSubmit()
 
 
 
 // User login
-function userLogin(){
+function userLogin() {
     userLoginForm.addEventListener("submit", async (event) => {
-        event.preventDefault(); 
-        
+        event.preventDefault();
+
         const formObject = {};
         formObject["email"] = userLoginForm.login_email.value;
         formObject["password"] = userLoginForm.login_password.value;
 
-        const res = await fetch ("/api/userLogin", {
-            method: "POST", 
+        const res = await fetch("/api/userLogin", {
+            method: "POST",
             headers: {
-                "Content-Type":"application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=utf-8"
             },
             body: JSON.stringify(formObject)
         })
-        
+
         const result = await res.json();
         console.log(result);
-        if ( res.status === 200 ){
+        if (res.status === 200) {
             userLoginForm.reset();
             window.location = "../html/main-page.html"
-        } else if ( res.status === 401 ){
-            alert(result.message); 
+        } else if (res.status === 401) {
+            alert(result.message);
         }
-        // if ( res.status === 200 ){
-        //     userLoginForm.reset();
-        //     window.location = "./html/main-page.html"
-        // } else if ( res.status === 401 ){
-        //     alert(result.message); 
-        // }
     })
 }
 userLogin()
@@ -116,33 +110,33 @@ userLogin()
 
 // async function checkUserLogin() {
 //     const navBarMyAccount = document.querySelector(".navbar-nav #myUserAccount")
-//     const navBarLoginBtn = document.querySelector(".navbar-nav #login-reg-user")
-//     if (!isLoggedIn) {
+//     const navBarLoginBtn = document.querySelector(".navbar-nav .userlogin")
+//     if (!isLoggedInUSERHTML) {
 //         navBarMyAccount.style.display = "none"
 //         navBarLoginBtn.style.display = "flex"
 //     } else {
 //         navBarMyAccount.style.display = "flex"
 //         navBarLoginBtn.style.display = "none"
 //     }
+//     const res = await fetch("/api/userLogin"); 
 
-//     const res = await fetch("/login");
 //     const result = await res.json();
+//     console.log(result)
 //     if (res.status === 200) {
-//         if (result.isLoggedIn) {
-//             isLoggedIn = true;
+//         if (result.isLoggedInUSERHTML) {
+//             isLoggedInUSERHTML = true;
 //             navBarMyAccount.style.display = "flex"
 //             navBarLoginBtn.style.display = "none"
-//             return true
 //         }
 //     } else {
-//         window.location = "/"
+//         window.location = "../html/500.html"
 //     }
-//     console.log("isLoggedIn:", isLoggedIn)
-//     return false
+//     console.log("isLoggedInUSERHTML: ", isLoggedInUSERHTML)
 // }
-// checkUserLogin()
+// checkUserLogin();
 
 
+// switch form for user
 function switchLoginRegForm() {
     userLoginForm.style.display = "block";
     userRegForm.style.display = "none";
@@ -163,7 +157,7 @@ function switchLoginRegForm() {
 }
 switchLoginRegForm();
 
-
+// switch form for doctor
 function switchDocLoginRegForm() {
     doctorLoginForm.style.display = "block";
     doctorRegForm.style.display = "none";
@@ -219,5 +213,3 @@ function finishedDocRegister() {
         switchDocLoginRegForm()
     })
 }
-
-
