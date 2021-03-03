@@ -29,8 +29,6 @@ profileRoutes.get("/api/userProfile/", async (req:Request, res:Response)=>{
 
 profileRoutes.put("/api/userProfile/", async (req:Request, res:Response)=>{
     try{
-        const idString=req.params.id
-        const id = parseInt(idString)
         const result = await profileController.putUser(req.session["userId"], req.body) 
         res.json(result)
         console.log(id)

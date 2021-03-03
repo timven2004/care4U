@@ -9,9 +9,10 @@ export class QuestionnaireController {
         try {
 
             //39 is for temporary use
-            let result = await this.questionnaireService.createUserQuestionnaire(req.body, req.session["userId"
+            
+            await this.questionnaireService.createUserQuestionnaire(req.body, req.session["userId"
         ]); 
-            res.json(result);
+            res.redirect("/user/clientBooking.html");
         } catch (error) {
             res.status(500).json(error.toString());
         }

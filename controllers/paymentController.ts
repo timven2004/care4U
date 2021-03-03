@@ -47,12 +47,14 @@ export class PaymentController {
 
     async successfulPayment(req:Request, res:Response){
         try{
-            res.json(await this.paymentServices.successfulPayment(req,res))
+            res.json(await this.paymentServices.successfulPayment(req.session["transactionRecordId"]))
 
         } catch (err){
             console.error(err.message)
+            res.status(502).json({message: "internal server error"})
         }
     }
+
 
     async getPaymentHistory(req:Request, res:Response){
         try{
