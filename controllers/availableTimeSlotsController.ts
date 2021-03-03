@@ -37,8 +37,9 @@ export class AvailableTimeSlotsController {
         const userId = req.session["userId"] || 39;
 
         console.log("timeSlotsId= " + id);
-        (await this.availableTimeSlotsServices.bookAvailableTimeSlots(res, userId, timeSlotId));
-        res.redirect("/paymentPreview.html")
+        const transactionRecordId= await this.availableTimeSlotsServices.bookAvailableTimeSlots(res, userId, timeSlotId);
+        req.session["transactionRecordId"] = transactionRecordId;
+        res.redirect("/html/paymentPreview.html")
     }
 
     async postAvailableTimeSlots(req: Request, res: Response) {

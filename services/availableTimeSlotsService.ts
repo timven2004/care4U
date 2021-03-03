@@ -47,7 +47,8 @@ export class AvailableTimeSlotsService {
         try {
             const result = await this.knex.select("doctors_available_time_slots.id", "doctor_id", "time_start", "time_end", "name as doctor_name")
                 .from("doctors_available_time_slots")
-                .innerJoin("doctors", "doctors.id", "doctors_available_time_slots.doctor_id");
+                .innerJoin("doctors", "doctors.id", "doctors_available_time_slots.doctor_id")
+                .orderBy("time_start");
             return result;
         } catch (err) {
             console.error(err.message)
@@ -72,7 +73,7 @@ export class AvailableTimeSlotsService {
 
     async bookAvailableTimeSlots(res: Response, userId: number, timeSlotId: number) {
         try {
-            const result = await this.knex.transaction(async (trx) => {
+            const transactionRecordId:number = await this.knex.transaction(async (trx) => {
                 const availableTimeSlots = await trx.select("doctors_available_time_slots.id", "doctor_id", "time_start")
                     .from("doctors_available_time_slots")
                     .where("doctors_available_time_slots.id", timeSlotId)
@@ -92,19 +93,35 @@ export class AvailableTimeSlotsService {
                     .where("user_id", userId)
 
 
-                await trx("bookings").insert({
+                const bookingId =await trx("bookings").insert({
                     time: availableTimeSlots[0].time_start,
                     user_id: userId,
                     doctor_id: availableTimeSlots[0].doctor_id,
                     is_active: true,
                     questionnaire_id: questionnaires[questionnaires.length - 1].id || 0
-                })
+                }).returning("id")
 
+                console.log(bookingId)
+
+                const currentTime = (new Date(Date.now())).toISOString()
+                
 
                 await trx("doctors_available_time_slots").where("doctors_available_time_slots.id", availableTimeSlots[0]["id"]).del();
+                //create transaction record
+                const transactionRecordId = await trx("transaction_records").insert({
+                    consultation_fee:100000,
+                    user_id: userId,
+                    doctor_id: availableTimeSlots[0].doctor_id,
+                    service_fee:2000,
+                    booking_id:parseInt(bookingId[0]),
+                    is_success:false,
+                    payment_date: currentTime
+                }).returning("id")
+                return transactionRecordId[0];
+                
             })
 
-            return result
+            return transactionRecordId
         }
         catch (err) {
             console.error(err)

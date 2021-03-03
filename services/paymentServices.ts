@@ -15,7 +15,6 @@ export class PaymentServices {
 
     async createCheckoutSession(line_items:Line_items[], req: Request, res: Response) {
         try{
-            console.log(`${this.Your_Domain}/html/paymentSuccess.html`)
 
 
             const session = await this.stripe.checkout.sessions.create({

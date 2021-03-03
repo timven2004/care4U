@@ -23,12 +23,11 @@ async function load() {
     })
     console.log(data);
     const myCalendar = new TavoCalendar('#my-calendar', {
-        date: "2037-01-01",
+        date: availableDatesArray[0],
         past_select: "true",
         highlight: availableDatesArray,
         highlight_sunday: false
     })
-
     // const render = () => {
     //     const calenderdayArray = document.querySelectorAll(".tavo-calendar__day")
     //     for (let i = 0; i < calenderdayArray.length - 1; i++) {
