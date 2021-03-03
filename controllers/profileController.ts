@@ -51,9 +51,10 @@ export class ProfileController{
             }
             const match = await checkPassword(password, user.password);
             if (match) {
-                req.session["userId"] = user.id
+                req.session["userId"] = user.id;
+                res.json({ message: "User Login successed!" });
+
             }
-            res.json({ message: "User Login successed!" });
         } catch (err) {
             console.error(err.message);
             res.status(500).json({ message: "internal server error" });
