@@ -14,3 +14,7 @@ paymentRoutes.get("/successfulPayment", async (req:Request, res:Response)=>{
   paymentController.successfulPayment(req,res)
 
 })
+
+paymentRoutes.get("/api/paymentHistory/", async(req:Request, res:Response)=>{
+  paymentController.getPaymentHistory(req,res);
+})

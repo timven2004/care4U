@@ -3,14 +3,15 @@ import { Line_items } from "../interface/payment"
 import Knex from 'knex'
 
 
-
 export class PaymentServices {
     Your_Domain: string
     stripe:any
+    knex:Knex
 
     constructor(Your_Domain: string, stripe:any, knex:Knex) {
         this.Your_Domain = Your_Domain;
         this.stripe = stripe
+        this.knex = knex
     }
 
     async createCheckoutSession(line_items:Line_items[], req: Request, res: Response) {
@@ -36,5 +37,18 @@ export class PaymentServices {
         catch (err){
             console.log(err.message)
         }
+    }
+
+    async retrievePaymentHistory(userId:number){
+        try{
+            const result = await this.knex.select("doctors.name as doctor_name","transaction_records.id" ,"transaction_records.consultation_fee", "transaction_records.service_fee", "transaction_records.is_success", "transaction_records.payment_date").from("transaction_records")
+            .innerJoin("doctors","doctors.id","transaction_records.doctor_id")
+            .where("user_id", userId)
+            return result
+        } catch (err){
+            console.error(err)
+            return (err)
+        }
+
     }
 }

@@ -18,7 +18,7 @@
 
     <header class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
+
             <div class="container">
                 <a class="navbar-brand" href="../html/main-page.html"><img src="../img/logo.jpeg"><span
                         id="logo">Care4U</span></a>
@@ -27,18 +27,18 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-    
+
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="../html/main-page.html">主頁</a>
                         </li>
-    
+
                         <!-- Button trigger modal for doctor  -->
                         <li type="button" class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                             <a class="nav-link" href="#">醫生登入 <span class="sr-only"></span></a>
                         </li>
-    
+
                         <!-- Modal for doctor -->
                         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div id="doctor-login-form">
-    
+
                                             <form id="doctor-login-form">
                                                 <h5>醫生登入</h5>
                                                 <input type="email" class="form-control" id="login_email"
@@ -60,19 +60,19 @@
                                                     name="login_password" placeholder="請輸入密碼" required />
                                                 <input class="submit" type="submit" value="登入" />
                                             </form>
-    
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-    
-    
+
+
                         <!-- Button trigger modal for user -->
                         <li type="button" class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                             <a class="nav-link" href="#"> 用戶註冊 / 登入 <span class="sr-only"></span></a>
                         </li>
-    
+
                         <!-- Modal for user  -->
                         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -87,9 +87,9 @@
                                         <div id="login-response" class="form-submit-response">
                                             <button>已完成註冊，馬上登入!</button>
                                         </div>
-    
+
                                         <div id="reg-or-login-form">
-    
+
                                             <form id="login-form">
                                                 <h5>用戶登入</h5>
                                                 <input type="email" class="form-control" id="login_email"
@@ -98,7 +98,7 @@
                                                     name="login_password" placeholder="請輸入密碼" required />
                                                 <input class="submit" type="submit" value="登入" />
                                             </form>
-    
+
                                             <form id="reg-form">
                                                 <h5>用戶帳號註冊</h5>
                                                 <div>
@@ -127,28 +127,28 @@
                                                     <input type="password" class="form-control" id="confirm_password"
                                                         name="confirm_password" placeholder="請再輸入密碼" required />
                                                 </div>
-    
+
                                                 <input class="submit" type="submit" value="提交" />
                                             </form>
-    
+
                                             <div id="reg-login-switch">
                                                 <a><span>請按此註冊</span></a>
                                             </div>
-    
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-    
+
                     </ul>
-    
+
                 </div>
-    
+
             </div>
         </nav>
     </header>
-    
+
 
     <div class="container">
         <div class="row py-5 px-4">
@@ -209,6 +209,58 @@
                         </div>
                     </div>
 
+
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="mb-0">繳費記錄</h5>
+                    </div>
+
+                    <div id="paymentHistory">
+
+                        <div class="p-4 rounded shadow-sm bg-light my-3">
+                            <p class="font-italic mb-0"><span id="toBeTherapyDate" class="mx-2">1/1/2100</span><span
+                                    id="toBeTherapyTime" class="mx-2">16:00</span>
+                                <span id="Doctor" class="mx-2">陳小明治療師</span>
+                                <span class="mx-2">費用：$1000</span>
+                                <span class="mx-2">服務費：$20</span>
+                                <span class="mx-2">總額：$1020</span>
+                                <span class="mx-2">交易狀態：成功</span>
+                                <span class="mx-2">記錄號碼：1</span>
+
+
+                            </p>
+                        </div>
+
+                    
+
+                        <div class="p-4 rounded shadow-sm bg-light my-3">
+                            <p class="font-italic mb-0"><span id="toBeTherapyDate" class="mx-2">1/1/2100</span><span
+                                    id="toBeTherapyTime" class="mx-2">16:00</span>
+                                <span id="Doctor" class="mx-2">陳小明治療師</span>
+                                <span class="mx-2">費用：$1000</span>
+                                <span class="mx-2">服務費：$20</span>
+                                <span class="mx-2">總額：$1020</span>
+                                <span class="mx-2">交易狀態：成功</span>
+                                <span class="mx-2">記錄號碼：1</span>
+
+
+                            </p>
+                        </div>
+                        <div class="p-4 rounded shadow-sm bg-light my-3">
+                            <p class="font-italic mb-0"><span id="toBeTherapyDate" class="mx-2">1/1/2100</span><span
+                                    id="toBeTherapyTime" class="mx-2">16:00</span>
+                                <span id="Doctor" class="mx-2">陳小明治療師</span>
+                                <span class="mx-2">費用：$1000</span>
+                                <span class="mx-2">服務費：$20</span>
+                                <span class="mx-2">總額：$1020</span>
+                                <span class="mx-2">交易狀態：成功</span>
+                                <span class="mx-2">記錄號碼：1</span>
+
+
+                            </p>
+                        </div>
+
+                    </div>
+
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h5 class="mb-0">過往治療記錄</h5>
                     </div>
@@ -256,7 +308,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
-        <script src="../js/navbarAndFooter.js"></script>
+    <script src="../js/navbarAndFooter.js"></script>
 </body>
 
 </html>
