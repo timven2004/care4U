@@ -1,4 +1,4 @@
-import { profileService } from './../main';
+// import { profileService } from './../main';
 import {ProfileService} from "../services/profileService"
 import { Request, Response } from "express"
 import { checkPassword } from "../hash";
