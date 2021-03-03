@@ -67,7 +67,7 @@ function userLogin(){
         console.log(result);
         if ( res.status === 200 ){
             userLoginForm.reset();
-            window.location = "../html/main-page"
+            window.location = "../html/main-page.html"
         } else if ( res.status === 401 ){
             alert(result.message); 
         }
