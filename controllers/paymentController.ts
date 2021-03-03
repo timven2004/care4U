@@ -56,8 +56,7 @@ export class PaymentController {
 
     async getPaymentHistory(req:Request, res:Response){
         try{
-            //39 is for temporary use
-            const userId = req.session["userId"]||39
+            const userId = req.session["userId"]
             res.json(await this.paymentServices.retrievePaymentHistory(userId))
 
         } catch (err) {

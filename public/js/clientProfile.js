@@ -1,14 +1,12 @@
 const username = document.querySelector("#clientName");
 const email = document.querySelector("#clientEmail");
 const phone = document.querySelector("#clientPhone");
-const searchParams = new URLSearchParams(window.location.search);
 const bookedDisplay = document.querySelector("#bookedDisplay");
 const bookedHistory = document.querySelector("#bookedHistory");
 const paymentHistory = document.querySelector("#paymentHistory")
-const id = searchParams.get("id")
 
-const fetchingData = async (userId) => {
-  const response = await fetch(`/api/userProfile/${userId}`, {
+const fetchingData = async () => {
+  const response = await fetch(`/api/userProfile/`, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json'
@@ -33,7 +31,7 @@ const fetchingPaymentHistory = async () => {
   return response.json();
 }
 
-fetchingData(id).then(data => {
+fetchingData().then(data => {
 
   username.innerHTML = data[0].name;
   email.innerHTML = data[0].email;
@@ -83,5 +81,7 @@ fetchingPaymentHistory().then(data => {
 `
 
   }
-paymentHistory.innerHTML=paymentStr;
+
+  paymentHistory.innerHTML=paymentStr;
+
 })

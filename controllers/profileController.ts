@@ -53,6 +53,7 @@ export class ProfileController{
             if (match) {
                 req.session["userId"] = user.id;
                 res.json({ message: "User Login successed!" });
+                console.log(req.session["userId"])
 
             }
         } catch (err) {

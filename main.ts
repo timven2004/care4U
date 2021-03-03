@@ -43,11 +43,7 @@ const knex = Knex(knexConfig[process.env.NODE_ENV||"development"])
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-app.use(expressSession({
-    secret: 'Tecky Academy teaches typescript',
-    resave:true,
-    saveUninitialized:true
-}));
+
 
 app.use(express.static('public'));
 
