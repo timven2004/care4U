@@ -27,11 +27,11 @@ profileRoutes.get("/api/userProfile/", async (req:Request, res:Response)=>{
     }
 })
 
-profileRoutes.put("/api/userProfile/:userId", async (req:Request, res:Response)=>{
+profileRoutes.put("/api/userProfile/", async (req:Request, res:Response)=>{
     try{
         const idString=req.params.id
         const id = parseInt(idString)
-        const result = await profileController.putUser(id, req.body) 
+        const result = await profileController.putUser(req.session["userId"], req.body) 
         res.json(result)
     } catch(err){
         console.error(err.message)
@@ -74,22 +74,18 @@ profileRoutes.post("/api/createDoctor", async (req:Request, res:Response)=>{
     }
 })
 
-profileRoutes.get("/api/doctorProfile/:doctorId", async (req:Request, res:Response)=>{
+profileRoutes.get("/api/doctorProfile/", async (req:Request, res:Response)=>{
     try{
-        const idString=req.params.id
-        const id = parseInt(idString)
-        res.json(await profileController.getDoctor(id, false))    
+        res.json(await profileController.getDoctor(req.session["doctorId"], false))    
     } catch(err){
         console.error(err.message)
         res.status(502).json({message:"Internal Server Error"})
     }
 })
 
-profileRoutes.put("/api/doctorProfile/:doctorId", async (req:Request, res:Response)=>{
+profileRoutes.put("/api/doctorProfile/", async (req:Request, res:Response)=>{
     try{
-        const idString=req.params.id
-        const id = parseInt(idString)
-        res.json(await profileController.putDoctor(id, req.body))  
+        res.json(await profileController.putDoctor(req.session["doctorId"], req.body))  
     } catch(err){
         console.error(err.message)
         res.status(502).json({message:"Internal Server Error"})
