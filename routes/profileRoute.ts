@@ -16,7 +16,7 @@ profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
 
 profileRoutes.get("/api/userProfile/:id", async (req:Request, res:Response)=>{
     try{
-        const idString=req.params.id
+        const idString=req.session["userId"]||req.params.id
         const id = parseInt(idString)
         res.json(await profileController.getUser(id, false))    
     } catch(err){

@@ -47,7 +47,7 @@ export class PaymentController {
 
     async successfulPayment(req:Request, res:Response){
         try{
-            this.paymentServices.successfulPayment(req,res)
+            res.json(await this.paymentServices.successfulPayment(req,res))
 
         } catch (err){
             console.error(err.message)
