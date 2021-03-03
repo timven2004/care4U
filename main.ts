@@ -15,6 +15,9 @@ import {QuestionnaireController} from "./controllers/questionnaireController"
 import {AvailableTimeSlotsService} from "./services/availableTimeSlotsService"
 import {AvailableTimeSlotsController} from "./controllers/availableTimeSlotsController"
 import {availableTimeSlots} from "./routes/availableTimeSlotsRoutes"
+import { isLoggedInHTML } from "./guard"
+import path from "path";
+
 dotenv.config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -48,12 +51,28 @@ export const questionnaireController = new QuestionnaireController(questionnaire
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+app.use(expressSession({
+    secret: 'Tecky Academy teaches typescript',
+    resave:true,
+    saveUninitialized:true
+}));
+
 app.use(express.static('public'));
 
 app.use(profileRoutes)
 app.use(paymentRoutes)
 app.use(availableTimeSlots)
 app.use(questionnaireRoutes)
+
+
+
+app.use(express.static(path.join(__dirname, "public")));
+app.use(isLoggedInHTML, express.static(path.join(__dirname, "private")));
+
+
+app.use((req,res)=>{
+    res.sendFile(path.join(__dirname,"404.html"));
+});
 
 
 app.use((req,res)=>{

@@ -1,9 +1,11 @@
 const userRegForm = document.querySelector("#reg-form");
 const userLoginForm = document.querySelector("#login-form");
+const doctorLoginForm = document.querySelector("#doctor-login-form");
+const doctorRegForm = document.querySelector("#doctor-reg-form");
 const switchRegLoginBtn = document.querySelector("#reg-login-switch a");
+const switchDocRegLoginBtn = document.querySelector("#reg-login-switch1 a");
 let fillingLoginForm = true;
 let isLoggedIn = false;
-
 
 
 function switchLoginRegForm() {
@@ -25,6 +27,27 @@ function switchLoginRegForm() {
     });
 }
 switchLoginRegForm();
+
+
+function switchDocLoginRegForm() {
+    doctorLoginForm.style.display = "block";
+    doctorRegForm.style.display = "none";
+    switchDocRegLoginBtn.innerHTML = "請按此建立帳戶";
+
+    switchDocRegLoginBtn.addEventListener("click", () => {
+        if (!fillingLoginForm) {
+            doctorLoginForm.style.display = "block";
+            doctorRegForm.style.display = "none";
+            switchDocRegLoginBtn.innerHTML = "請按此建立帳戶";
+        } else {
+            doctorLoginForm.style.display = "none";
+            doctorRegForm.style.display = "block";
+            switchDocRegLoginBtn.innerHTML = "請按此登入";
+        }
+        fillingLoginForm = !fillingLoginForm;
+    });
+}
+switchDocLoginRegForm();
 
 
 // Submit UX handling

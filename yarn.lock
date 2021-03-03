@@ -420,7 +420,7 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
 
 express-session@^1.17.1:
   version "1.17.1"
-  resolved "https://registry.npmjs.org/express-session/-/express-session-1.17.1.tgz"
+  resolved "https://registry.yarnpkg.com/express-session/-/express-session-1.17.1.tgz#36ecbc7034566d38c8509885c044d461c11bf357"
   integrity sha512-UbHwgqjxQZJiWRTMyhvWGvjBQduGCSBDhhZXYenziMFjxst5rMV+aJZ6hKPHZnPyHGsrqRICxtX8jtEbm/z36Q==
   dependencies:
     cookie "0.4.0"
