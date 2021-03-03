@@ -1,12 +1,13 @@
+import { profileService } from './../main';
 import {ProfileService} from "../services/profileService"
-import {Request} from "express"
+import { Request, Response } from "express"
+import { checkPassword } from "../hash";
 
 export class ProfileController{
-    private profileService
+    private profileService: ProfileService;
     constructor(profileService : ProfileService){
         this.profileService = profileService
     }
-
 
     async postUser(body:Request["body"]){
         const result = await this.profileService.createUser(body)
@@ -38,6 +39,27 @@ export class ProfileController{
     async putDoctor(doctorId:number, body:Request["body"]){
         const result = await this.profileService.updateDoctorProfile(doctorId, body)
         return result
+    }
+
+    login = async (req: Request, res: Response) => {
+        try {
+            const { email, password } = req.body;
+            const user = await this.profileService.getUserByEmail(email);
+            if (!user) {
+                res.status(401).json({ message: "email / password incorrect" });
+                return;
+            }
+            const match = await checkPassword(password, user.password);
+            if (match) {
+                req.session["user"] = {
+                    id: user.id, 
+                };
+            }
+            res.json({ message: "User Login successed!" });
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).json({ message: "internal server error" });
+        }
     }
 }
 
