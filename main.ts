@@ -36,17 +36,9 @@ app.use(expressSession({
 
 const knexConfig = require("./knexfile")
 const knex = Knex(knexConfig[process.env.NODE_ENV||"development"])
-export const profileService = new ProfileService(knex)
-export const profileController = new ProfileController(profileService)
-export const paymentServices = new PaymentServices(process.env.YOUR_DOMAIN||"http://localhost:8080", stripe, knex)
-export const paymentController = new PaymentController(paymentServices)
-export const availableTimeSlotsService = new AvailableTimeSlotsService(knex)
-export const availableTimeSlotsController = new AvailableTimeSlotsController(availableTimeSlotsService)
 
 
 // heady 
-const questionnaireService = new QuestionnaireService(knex)
-export const questionnaireController = new QuestionnaireController(questionnaireService)
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -58,6 +50,15 @@ app.use(expressSession({
 }));
 
 app.use(express.static('public'));
+
+export const profileService = new ProfileService(knex)
+export const profileController = new ProfileController(profileService)
+export const paymentServices = new PaymentServices(process.env.YOUR_DOMAIN||"http://localhost:8080", stripe, knex)
+export const paymentController = new PaymentController(paymentServices)
+export const availableTimeSlotsService = new AvailableTimeSlotsService(knex)
+export const availableTimeSlotsController = new AvailableTimeSlotsController(availableTimeSlotsService)
+const questionnaireService = new QuestionnaireService(knex)
+export const questionnaireController = new QuestionnaireController(questionnaireService)
 
 app.use(profileRoutes)
 app.use(paymentRoutes)

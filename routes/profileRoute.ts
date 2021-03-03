@@ -1,10 +1,10 @@
-import {profileController} from "../main"
 import express, { Request, Response } from 'express';
+import {profileController} from "../main"
 
 export const profileRoutes = express.Router();
 
 
-profileRoutes.post("/api/userLogin", profileController.login)
+profileRoutes.post("/api/userLogin",()=>profileController.login)
 
 
 profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
@@ -19,7 +19,7 @@ profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
 
 profileRoutes.get("/api/userProfile/:userId", async (req:Request, res:Response)=>{
     try{
-        const idString=req.params.userId
+        const idString=req.session["userId"]||req.params.userId
         const id = parseInt(idString)
         res.json(await profileController.getUser(id, false))    
     } catch(err){

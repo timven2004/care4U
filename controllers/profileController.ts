@@ -1,4 +1,4 @@
-// import { profileService } from './../main';
+// import { profileService } from '../main';
 import {ProfileService} from "../services/profileService"
 import { Request, Response } from "express"
 import { checkPassword } from "../hash";
@@ -41,7 +41,7 @@ export class ProfileController{
         return result
     }
 
-    login = async (req: Request, res: Response) => {
+    public login = async (req: Request, res: Response)=>{
         try {
             const { email, password } = req.body;
             const user = await this.profileService.getUserByEmail(email);
@@ -51,9 +51,7 @@ export class ProfileController{
             }
             const match = await checkPassword(password, user.password);
             if (match) {
-                req.session["user"] = {
-                    id: user.id, 
-                };
+                req.session["userId"] = user.id
             }
             res.json({ message: "User Login successed!" });
         } catch (err) {

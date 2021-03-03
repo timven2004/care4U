@@ -75,7 +75,7 @@ fetchingPaymentHistory().then(data => {
         <span class="mx-2">服務費：$${payment.service_fee/100}</span>
         <span class="mx-2">總額：$${(payment.consultation_fee + payment.service_fee)/ 100}</span>
         <span class="mx-2">交易狀態：${payment.is_success? "成功":"不成功"}</span>
-        <span class="mx-2">記錄號碼：${payment.id}</span>
+        <span class="mx-2">參考編號：${payment.id}</span>
       </div>
 
     </p>

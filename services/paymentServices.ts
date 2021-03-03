@@ -33,9 +33,10 @@ export class PaymentServices {
 
     async successfulPayment(req:Request, res:Response){
         try{
-        res.json({message: "payment success"})             }
+        return ({message: "payment success"})}
         catch (err){
-            console.log(err.message)
+            return (err)
+
         }
     }
 
