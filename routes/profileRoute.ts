@@ -4,7 +4,7 @@ import {profileController} from "../main"
 export const profileRoutes = express.Router();
 
 
-profileRoutes.post("/api/userLogin",()=>profileController.login)
+profileRoutes.post("/api/userLogin",async (req:Request,res:Response)=> await profileController.login(req,res))
 
 
 profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
