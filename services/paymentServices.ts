@@ -34,7 +34,7 @@ export class PaymentServices {
     async successfulPayment(transactionRecordId:number){
         try{
         
-        return this.knex("transaction_records").update({is_success: true}).where("id",transactionRecordId)
+        return await this.knex("transaction_records").update({is_success: true}).where("id",transactionRecordId)
     }
 
         catch (err){
@@ -42,6 +42,7 @@ export class PaymentServices {
 
         }
     }
+
 
     async retrievePaymentHistory(userId:number){
         try{

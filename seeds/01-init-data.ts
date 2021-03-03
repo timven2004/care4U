@@ -3,6 +3,7 @@ import { hashPassword } from "../hash";
 
 export async function seed(knex: Knex): Promise<void> {
     // Deletes ALL existing entries
+    await knex("transaction_records").del();
     await knex("bookings").del();
     await knex("questionnaires").del();
     await knex("doctors_available_time_slots").del();

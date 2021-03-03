@@ -51,8 +51,10 @@ export class PaymentController {
 
         } catch (err){
             console.error(err.message)
+            res.status(502).json({message: "internal server error"})
         }
     }
+
 
     async getPaymentHistory(req:Request, res:Response){
         try{

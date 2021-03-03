@@ -18,3 +18,4 @@ paymentRoutes.get("/successfulPayment", (req:Request, res:Response)=>{
 paymentRoutes.get("/api/paymentHistory/",(req:Request, res:Response)=>{
   paymentController.getPaymentHistory(req,res);
 })
+
