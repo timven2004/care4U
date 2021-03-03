@@ -1,10 +1,10 @@
-import {profileController} from "../main"
 import express, { Request, Response } from 'express';
+import {profileController} from "../main"
 
 export const profileRoutes = express.Router();
 
 
-profileRoutes.post("/api/userLogin", profileController.login)
+profileRoutes.post("/api/userLogin",()=>profileController.login)
 
 
 profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
