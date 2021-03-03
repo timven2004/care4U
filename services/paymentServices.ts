@@ -31,9 +31,12 @@ export class PaymentServices {
         }
     }
 
-    async successfulPayment(req:Request, res:Response){
+    async successfulPayment(transactionRecordId:number){
         try{
-        return ({message: "payment success"})}
+        
+        return this.knex("transaction_records").update({is_success: true}).where("id",transactionRecordId)
+    }
+
         catch (err){
             return (err)
 

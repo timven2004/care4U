@@ -2,14 +2,13 @@ const username = document.querySelector("#doctorName");
 const email = document.querySelector("#doctorEmail");
 const phone = document.querySelector("#doctorPhone");
 const description = document.querySelector("#doctorDescription")
-const searchParams = new URLSearchParams(window.location.search);
 const bookedDisply= document.querySelector("#bookedDisplay");
 const bookedHistory= document.querySelector("#bookedHistory");
 
 
 const id = searchParams.get("doctorId")
 const fetchingData = async (userId) => {
-    const response = await fetch(`/api/doctorProfile/${userId}`, {
+    const response = await fetch(`/api/doctorProfile/`, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json'
