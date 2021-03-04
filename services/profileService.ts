@@ -154,6 +154,7 @@ export class ProfileService {
                 "bookings.is_active",
                 "bookings.questionnaire_id",
                 "users.name",
+                "users.email as clientEmail",
                 "users.telephone",
                 "bookings.questionnaire_id"
             )
