@@ -32,3 +32,12 @@
     margin: 5px;
     width: 95%
 }
+
+#choosenTimeSlotId{
+    display: none;
+}
+
+.bookingContainer{
+    display: flex;
+    justify-content: center;
+}

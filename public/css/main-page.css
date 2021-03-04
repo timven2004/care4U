@@ -297,3 +297,7 @@ label {
     align-items: center;
     border-radius: 12px;
 }
+
+.img-fluid{
+    object-fit: cover
+}

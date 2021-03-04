@@ -45,10 +45,12 @@ export class AvailableTimeSlotsService {
 
     async retrieveAvailableTimeSlots(res: Response) {
         try {
+            const currentTime = (new Date(Date.now())).toISOString()
             const result = await this.knex.select("doctors_available_time_slots.id", "doctor_id", "time_start", "time_end", "name as doctor_name")
                 .from("doctors_available_time_slots")
                 .innerJoin("doctors", "doctors.id", "doctors_available_time_slots.doctor_id")
-                .orderBy("time_start");
+                .orderBy("time_start")
+                .where("time_start",">", currentTime)
             return result;
         } catch (err) {
             console.error(err.message)
@@ -59,10 +61,14 @@ export class AvailableTimeSlotsService {
 
     async retrieveAvailableTimeSlotsFollowUp(res: Response, doctorId: number) {
         try {
+            const currentTime = (new Date(Date.now())).toISOString()
             const result = await this.knex.select("doctors_available_time_slots.id", "doctor_id", "time_start", "time_end", "name as doctor_name")
                 .from("doctors_available_time_slots")
                 .innerJoin("doctors", "doctors.id", "doctors_available_time_slots.doctor_id")
-                .where("doctor_id", doctorId);
+                .where("doctor_id", doctorId)
+                .andWhere(function() {
+                    this.where('start_time', '>', currentTime)
+                  })
             return result;
         } catch (err) {
             console.error(err.message)
