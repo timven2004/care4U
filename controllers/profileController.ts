@@ -74,7 +74,7 @@ export class ProfileController {
 
 
 
-doctorLogin = async (req: Request, res: Response) => {
+ public doctorLogin = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
         const doctor = await this.profileService.getDoctorByEmail(email);

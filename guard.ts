@@ -32,7 +32,7 @@ export function isLoggedInUSERHTML(
     next: NextFunction
 ) {
     console.log(req.session);
-    if (req.session?.["userId"]) {
+    if (req.session?.["userId"]||req.session?.["doctorId"]) {
         next();
     } else {
         res.redirect("/html/main-page.html");
