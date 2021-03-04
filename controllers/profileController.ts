@@ -9,10 +9,29 @@ export class ProfileController {
         this.profileService = profileService;
     }
 
-    // const postUser = async (body: Request["body"]) {
-    //     const result = await this.profileService.createUser(body);
-    //     return result;
-    // }
+    // (body: Request["body"])
+     public postUser = async (req: Request, res: Response) => {
+        try {
+            const { name, email, telephone, password } = req.body;
+            if (!name || !password || !telephone || !password) {
+                res.status(400).json ({ 
+                    message: 'Please enter name/ email/ telephone/ password',
+                 })
+                 return;
+            }
+                
+              const result = await this.profileService.createUser
+                          req.body;
+              console.log(result);
+              res.json ({ message: 'success' }) 
+        } catch (err) {
+            console.log(err.message);
+            res.status(500).json({ message: "Internal Server Error" });
+        }
+    };
+    
+    
+   
 
     async getUser(id: number, withPassword: boolean = false) {
         const result = await this.profileService.getUserProfile(
@@ -28,10 +47,48 @@ export class ProfileController {
         return result;
     }
 
-    async postDoctor(body: Request["body"]) {
-        const result = await this.profileService.createDoctor(body);
-        return result;
+    postDoctor = async (req: Request, res: Response) => {
+        try {
+            const { name, email, telephone, password } = req.body
+            if (!name || !password || !telephone || !email) {
+                res.status(400).json ({ 
+                    message: 'Please enter name/ email/ telephone/ password'
+                 })
+                 return;
+            }
+                
+              const result = await this.profileService.createUser (
+                        req.body
+              );
+              console.log(result);
+              res.json ({ message: 'success' })
+        } catch (err) {
+            console.log(err.message);
+            res.status(500).json({ message: "Internal Server Error" });
+        }
     }
+
+    // postUser = async (req: Request, res: Response) => {
+    //     try {
+    //         const { name, email, telephone, password } = req.body
+    //         if (!name || !password || !telephone || !password) {
+    //             res.status(400).json ({ 
+    //                 message: 'Invalid name or password'
+    //              })
+    //              return;
+    //         }
+                
+    //           const result = await this.profileService.createUser (
+    //               name, email, telephone, password
+    //           );
+    //           console.log(result);
+    //           res.json ({ message: 'success' })
+    //     } catch (err) {
+    //         console.log(err.message);
+    //         res.status(500).json({ message: "Internal Server Error" });
+    //     }
+    // };
+    
 
     async getDoctor(doctorId: number, withPassword: boolean = false) {
         const result = await this.profileService.getDoctorProfile(
@@ -51,6 +108,9 @@ export class ProfileController {
         );
         return result;
     }
+
+
+
 
     public userLogin = async (req: Request, res: Response) => {
         try {
@@ -72,6 +132,9 @@ export class ProfileController {
         }
     };
 
+
+
+
     public doctorLogin = async (req: Request, res: Response) => {
         try {
             const { email, password } = req.body;
@@ -92,19 +155,22 @@ export class ProfileController {
         }
     };
 
+
+
     public checkUserLogin = async (req: Request, res: Response) => {
         try {
-            if (req.session["user"].email) {
 
-            }
+            res.json({ isLoggedInUSERAPI: true });
+            return;
         } catch (err) {
             console.log(err);
             res.status(500).json({ message: "Internal Server Error" });
+        }
+    };
 
 
 
-
-    userLogout = (req: Request, res: Response) => {
+    public userLogout = (req: Request, res: Response) => {
         try {
             if (req.session) {
                req.session.destroy((err)=>{console.log(err)});
@@ -116,7 +182,9 @@ export class ProfileController {
         }
     };
 
-    const doctorLogout = (req: Request, res: Response) => {
+
+
+      public doctorLogout = (req: Request, res: Response) => {
         try {
             if (req.session) {
                 req.session.destroy((err)=>{console.log(err)});

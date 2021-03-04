@@ -6,43 +6,79 @@ const switchRegLoginBtn = document.querySelector("#reg-login-switch a");
 const switchDocRegLoginBtn = document.querySelector("#reg-login-switch1 a");
 let fillingLoginForm = true;
 let fillingDoctorLoginForm = true;
-let isLoggedInUSERHTML = false;
+let isLoggedInUSERAPI = false;
 
 
 
 // User Registration
-// function userRegistrationFormSubmit() {
-//     userRegForm.addEventListener("submit", async function (event) {
-//         event.preventDefault();
+function userRegistrationFormSubmit() {
+    userRegForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-//         const form = this;
-//         const formObject = {};
+        const form = this;
+        const formObject = {};
 
-//         formObject["name"] = userRegForm.reg_username.value;
-//         formObject["email"] = userRegForm.reg_email.value;
-//         formObject["tel"] = userRegForm.reg_telephone.value;
-//         formObject["password"] = userRegForm.reg_password.value;
+        formObject["name"] = userRegForm.reg_username.value;
+        formObject["email"] = userRegForm.reg_email.value;
+        formObject["tel"] = userRegForm.reg_telephone.value;
+        formObject["password"] = userRegForm.reg_password.value;
 
-//         const res = await fetch("/api/createUser", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json; charset=utf-8"
-//             },
-//             body: JSON.stringify(formObject)
-//         })
+        const res = await fetch("/api/createUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(formObject)
+        })
 
-//         const result = await res.json();
-//         console.log(result);
-//         if (res.status === 200) {
-//             userRegForm.reset();
-//             window.location = "/"
-//         } else if (res.status === 401) {
-//             alert(result.message);
-//         }
-//     })
+        const result = await res.json();
+        console.log(result);
+        if (res.status === 200) {
+            userRegForm.reset();
+            window.location = "../html/main-page.html"
+        } else if (res.status === 401) {
+            alert(result.message);
+        }
+    })
 
-// }
-// userRegistrationFormSubmit()
+}
+userRegistrationFormSubmit()
+
+
+// Doctor Registration
+function DoctorRegistrationFormSubmit() {
+    doctorRegForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const form = this;
+        const formObject = {};
+
+        formObject["name"] = doctorRegForm.reg_username.value;
+        formObject["email"] = doctorRegForm.reg_email.value;
+        formObject["tel"] = doctorRegForm.reg_telephone.value;
+        formObject["password"] = doctorRegForm.reg_password.value;
+        formObject["description"] = doctorRegForm.personalDiscription.value;
+
+        const res = await fetch("/api/createDoctor", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(formObject)
+        })
+
+        const result = await res.json();
+        console.log(result);
+        if (res.status === 200) {
+            doctorRegForm.reset();
+            window.location = "../html/main-page.html"
+        } else if (res.status === 401) {
+            alert(result.message);
+        }
+    })
+
+}
+DoctorRegistrationFormSubmit()
 
 
 
@@ -139,29 +175,31 @@ doctorLogin()
 
 
 async function checkUserLogin() {
-    const navBarMyAccount = document.querySelector(".navbar-nav #myUserAccount")
-    const navBarLoginBtn = document.querySelector(".navbar-nav .userlogin")
-    if (!isLoggedInUSERHTML) {
-        navBarMyAccount.style.display = "none"
-        navBarLoginBtn.style.display = "flex"
+    const navBarMyUserAccount = document.querySelector("#myUserAccount #userAccountItems")
+    const navBarUserLoginBtn = document.querySelector("#userRegButton")
+    if (!isLoggedInUSERAPI) {
+        navBarMyUserAccount.style.display = "none"
+        navBarUserLoginBtn.style.display = "flex"
     } else {
-        navBarMyAccount.style.display = "flex"
-        navBarLoginBtn.style.display = "none"
+        navBarMyUserAccount.style.display = "flex"
+        navBarUserLoginBtn.style.display = "none"
     }
     const res = await fetch("/api/userLogin"); 
 
     const result = await res.json();
     console.log(result)
     if (res.status === 200) {
-        if (result.isLoggedInUSERHTML) {
-            isLoggedInUSERHTML = true;
-            navBarMyAccount.style.display = "flex"
-            navBarLoginBtn.style.display = "none"
+        if (result.isLoggedInUSERAPI) {
+            isLoggedInUSERAPI = true;
+            navBarMyUserAccount.style.display = "flex"
+            navBarUserLoginBtn.style.display = "none"
+            return;
         }
-    } else {
-        window.location = "../html/500.html"
-    }
-    console.log("isLoggedInUSERHTML: ", isLoggedInUSERHTML)
+    } 
+    // else {
+    //     window.location = "../html/500.html"
+    // }
+    console.log("isLoggedInUSERAPI:", isLoggedInUSERAPI)
 }
 checkUserLogin();
 

@@ -19,15 +19,16 @@ export class ProfileService {
     }
 
     async createUser(body: Request["body"]) {
+        const hashPassword = await hashPassword(password);
         const result = await this.knex.transaction(async (trx) => {
-            return trx("users").insert({
+            return trx.insert({
                 name: body["name"],
                 email: body["email"],
                 telephone: body["telephone"],
                 password: hashPassword(body["password"]),
                 created_at: trx.fn.now(),
                 updated_at: trx.fn.now(),
-            });
+            }).into("users").returning('id');
         });
         return result;
     }
@@ -101,16 +102,17 @@ export class ProfileService {
     }
 
     async createDoctor(body: Request["body"]) {
+        const hashPassword1 = await hashPassword(body.password);
         const result = await this.knex.transaction(async (trx) => {
-            return trx("doctors").insert({
+            return trx.insert({
                 name: body["name"],
                 email: body["email"],
                 telephone: body["telephone"],
-                password: hashPassword(body["password"]),
+                password: hashPassword1,
                 description: body["description"],
                 created_at: trx.fn.now(),
                 updated_at: trx.fn.now(),
-            });
+            }).into("doctors").returning('id');
         });
         return result;
     }
@@ -200,4 +202,4 @@ export class ProfileService {
     }
 }
 
-async 
+
