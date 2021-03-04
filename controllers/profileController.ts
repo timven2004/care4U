@@ -98,7 +98,7 @@ export class ProfileController {
       userLogout = (req: Request, res: Response) => {
         try {
             if (req.session) {
-               delete req.session["userId"];
+               req.session.destroy((err)=>{console.log(err)});
             }
             res.redirect("../html/main-page.html");
         } catch (err) {
@@ -110,7 +110,7 @@ export class ProfileController {
       doctorLogout = (req: Request, res: Response) => {
         try {
             if (req.session) {
-               delete req.session["doctorId"];
+                req.session.destroy((err)=>{console.log(err)});
             }
             res.redirect("../html/main-page.html");
         } catch (err) {
