@@ -13,7 +13,7 @@ export class ProfileController {
      public postUser = async (req: Request, res: Response) => {
         try {
             const { name, email, telephone, password } = req.body;
-            if (!name || !password || !telephone || !password) {
+            if (!name || !email || !telephone || !password) {
                 res.status(400).json ({ 
                     message: 'Please enter name/ email/ telephone/ password',
                  })

@@ -19,13 +19,13 @@ export class ProfileService {
     }
 
     async createUser(body: Request["body"]) {
-        const hashPassword = await hashPassword(password);
+        const hashPassword1 = await hashPassword(body.password);
         const result = await this.knex.transaction(async (trx) => {
             return trx.insert({
                 name: body["name"],
                 email: body["email"],
                 telephone: body["telephone"],
-                password: hashPassword(body["password"]),
+                password: hashPassword1,
                 created_at: trx.fn.now(),
                 updated_at: trx.fn.now(),
             }).into("users").returning('id');
