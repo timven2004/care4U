@@ -136,6 +136,11 @@ export async function seed(knex: Knex): Promise<void> {
     await knex("doctors_available_time_slots").insert([
         {
             doctor_id: doctorsIds[0],
+            time_start: '2020-01-01 10:00:00',
+            time_end: '2020-01-01 11:00:00'
+        },
+        {
+            doctor_id: doctorsIds[0],
             time_start: '2037-01-01 10:00:00',
             time_end: '2037-01-01 11:00:00'
         },

@@ -15,7 +15,7 @@ import { QuestionnaireController } from "./controllers/questionnaireController";
 import { AvailableTimeSlotsService } from "./services/availableTimeSlotsService";
 import { AvailableTimeSlotsController } from "./controllers/availableTimeSlotsController";
 import { availableTimeSlots } from "./routes/availableTimeSlotsRoutes";
-import { isLoggedInUSERHTML, isLoggedInDOCHTML } from "./guard";
+import { isLoggedInUSERHTML } from "./guard";
 import path from "path";
 
 dotenv.config();
@@ -66,11 +66,10 @@ app.use(questionnaireRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(isLoggedInUSERHTML, express.static(path.join(__dirname, "private")));
-app.use(isLoggedInDOCHTML, express.static(path.join(__dirname, "private")));
-
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, "404.html"));
 });
+
 
 // app.use((req, res) => {
 //     res.status(404).json({ message: "404 Not found" });
