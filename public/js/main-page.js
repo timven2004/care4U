@@ -11,38 +11,38 @@ let isLoggedInUSERHTML = false;
 
 
 // User Registration
-function userRegistrationFormSubmit() {
-    userRegForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
+// function userRegistrationFormSubmit() {
+//     userRegForm.addEventListener("submit", async function (event) {
+//         event.preventDefault();
 
-        const form = this;
-        const formObject = {};
+//         const form = this;
+//         const formObject = {};
 
-        formObject["name"] = userRegForm.reg_username.value;
-        formObject["email"] = userRegForm.reg_email.value;
-        formObject["tel"] = userRegForm.reg_telephone.value;
-        formObject["password"] = userRegForm.reg_password.value;
+//         formObject["name"] = userRegForm.reg_username.value;
+//         formObject["email"] = userRegForm.reg_email.value;
+//         formObject["tel"] = userRegForm.reg_telephone.value;
+//         formObject["password"] = userRegForm.reg_password.value;
 
-        const res = await fetch("/api/createUser", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify(formObject)
-        })
+//         const res = await fetch("/api/createUser", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json; charset=utf-8"
+//             },
+//             body: JSON.stringify(formObject)
+//         })
 
-        const result = await res.json();
-        console.log(result);
-        if (res.status === 200) {
-            userRegForm.reset();
-            window.location = "/"
-        } else if (res.status === 401) {
-            alert(result.message);
-        }
-    })
+//         const result = await res.json();
+//         console.log(result);
+//         if (res.status === 200) {
+//             userRegForm.reset();
+//             window.location = "/"
+//         } else if (res.status === 401) {
+//             alert(result.message);
+//         }
+//     })
 
-}
-userRegistrationFormSubmit()
+// }
+// userRegistrationFormSubmit()
 
 
 
@@ -74,6 +74,36 @@ function userLogin() {
     })
 }
 userLogin()
+
+
+// Doctor login
+function doctorLogin() {
+    doctorLoginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formObject = {};
+        formObject["email"] = doctorLoginForm.login_email.value;
+        formObject["password"] = doctorLoginForm.login_password.value;
+
+        const res = await fetch("/api/doctorLogin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(formObject)
+        })
+
+        const result = await res.json();
+        console.log(result);
+        if (res.status === 200) {
+            userLoginForm.reset();
+            window.location = "../html/main-page.html"
+        } else if (res.status === 401) {
+            alert(result.message);
+        }
+    })
+}
+doctorLogin()
 
 
 
@@ -157,6 +187,7 @@ function switchLoginRegForm() {
 }
 switchLoginRegForm();
 
+
 // switch form for doctor
 function switchDocLoginRegForm() {
     doctorLoginForm.style.display = "block";
@@ -177,39 +208,3 @@ function switchDocLoginRegForm() {
     });
 }
 switchDocLoginRegForm();
-
-
-// Submit user UX handling
-function finishedRegister() {
-    const regOrLoginForm = document.querySelector("#user-reg-or-login-form");
-    const formResponse = document.querySelector("#login-response.form-submit-response");
-
-    formResponse.style.display = "flex";
-    regOrLoginForm.style.display = "none";
-    switchRegLoginBtn.style.display = "none";
-
-    formResponse.addEventListener("click", () => {
-        formResponse.style.display = "none";
-        switchRegLoginBtn.style.display = "block";
-        regOrLoginForm.style.display = "block";
-        switchLoginRegForm()
-    })
-}
-
-
-// Submit doctor UX handling
-function finishedDocRegister() {
-    const regOrLoginDocForm = document.querySelector("#doctor-reg-or-login-form1");
-    const formDocResponse = document.querySelector("#login-response1.form-submit-response1");
-
-    formDocResponse.style.display = "flex";
-    regOrLoginDocForm.style.display = "none";
-    switchDocRegLoginBtn.style.display = "none";
-
-    formDocResponse.addEventListener("click", () => {
-        formDocResponse.style.display = "none";
-        switchDocRegLoginBtn.style.display = "block";
-        regOrLoginDocForm.style.display = "block";
-        switchDocLoginRegForm()
-    })
-}

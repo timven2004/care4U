@@ -9,10 +9,10 @@ export class ProfileController {
         this.profileService = profileService;
     }
 
-    async postUser(body: Request["body"]) {
-        const result = await this.profileService.createUser(body);
-        return result;
-    }
+    // const postUser = async (body: Request["body"]) {
+    //     const result = await this.profileService.createUser(body);
+    //     return result;
+    // }
 
     async getUser(id: number, withPassword: boolean = false) {
         const result = await this.profileService.getUserProfile(
@@ -71,10 +71,10 @@ export class ProfileController {
             res.status(500).json({ message: "internal server error" });
         }
     };
-}
 
 
-const doctorLogin = async (req: Request, res: Response) => {
+
+doctorLogin = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
         const doctor = await this.profileService.getDoctorByEmail(email);
@@ -82,11 +82,10 @@ const doctorLogin = async (req: Request, res: Response) => {
             res.status(401).json({ message: "email / password incorrect" });
             return;
         }
-        console.log(doctorLogin);
         const match = await checkPassword(password, doctor.password);
         if (match) {
             req.session["doctorId"] = doctor.id;
-            res.json({ message: "Doctor Login successed!" });
+            res.json({ message: "Login successed!" });
             console.log(req.session["doctorId"]);
         }
     } catch (err) {
@@ -96,11 +95,10 @@ const doctorLogin = async (req: Request, res: Response) => {
 };
 
 
-      const userLogout = (req: Request, res: Response) => {
+      userLogout = (req: Request, res: Response) => {
         try {
             if (req.session) {
                delete req.session["userId"];
-               console.log(userLogout);
             }
             res.redirect("../html/main-page.html");
         } catch (err) {
@@ -109,16 +107,17 @@ const doctorLogin = async (req: Request, res: Response) => {
         }
 
 }
-      const doctorLogout = (req: Request, res: Response) => {
+      doctorLogout = (req: Request, res: Response) => {
         try {
             if (req.session) {
                delete req.session["doctorId"];
-               console.log(doctorLogout);
             }
             res.redirect("../html/main-page.html");
         } catch (err) {
             console.log(err);
             res.status(500).json({ message: "Internal Server Error" });
         }
+
+}
 
 }

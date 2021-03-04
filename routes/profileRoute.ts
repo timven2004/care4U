@@ -7,15 +7,17 @@ export const profileRoutes = express.Router();
 profileRoutes.post("/api/userLogin",async (req:Request,res:Response)=> await profileController.userLogin(req,res))
 
 
-profileRoutes.post("/api/createUser", async (req:Request, res:Response)=>{
-    try{
-        res.json(await profileController.postUser(req.body))
+// profileRoutes.post("/api/createUser", async (req:Request, res:Response)=> await profileController.postUser(req, res))
 
-    }catch(err){
-        console.error(err.message)
-        res.status(502).json({message:"Internal Server Error"})
-    }
-})
+// {
+//     try{
+//         res.json(await profileController.postUser(req.body))
+
+//     }catch(err){
+//         console.error(err.message)
+//         res.status(502).json({message:"Internal Server Error"})
+//     }
+// })
 
 profileRoutes.get("/api/userProfile/", async (req:Request, res:Response)=>{
     try{
@@ -31,7 +33,6 @@ profileRoutes.put("/api/userProfile/", async (req:Request, res:Response)=>{
     try{
         const result = await profileController.putUser(req.session["userId"], req.body) 
         res.json(result)
-        console.log(id)
     } catch(err){
         console.error(err.message)
         res.status(502).json({message:"Internal Server Error"})
