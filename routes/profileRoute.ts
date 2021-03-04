@@ -6,6 +6,7 @@ export const profileRoutes = express.Router();
 
 profileRoutes.post("/api/userLogin",async (req:Request,res:Response)=> await profileController.userLogin(req,res))
 
+profileRoutes.get("/api/userLogin", async (req:Request,res:Response)=> await profileController.checkUserLogin(req,res))
 
 // profileRoutes.post("/api/createUser", async (req:Request, res:Response)=> await profileController.postUser(req, res))
 

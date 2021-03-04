@@ -138,32 +138,32 @@ doctorLogin()
 // checkDoctorLogin()
 
 
-// async function checkUserLogin() {
-//     const navBarMyAccount = document.querySelector(".navbar-nav #myUserAccount")
-//     const navBarLoginBtn = document.querySelector(".navbar-nav .userlogin")
-//     if (!isLoggedInUSERHTML) {
-//         navBarMyAccount.style.display = "none"
-//         navBarLoginBtn.style.display = "flex"
-//     } else {
-//         navBarMyAccount.style.display = "flex"
-//         navBarLoginBtn.style.display = "none"
-//     }
-//     const res = await fetch("/api/userLogin"); 
+async function checkUserLogin() {
+    const navBarMyAccount = document.querySelector(".navbar-nav #myUserAccount")
+    const navBarLoginBtn = document.querySelector(".navbar-nav .userlogin")
+    if (!isLoggedInUSERHTML) {
+        navBarMyAccount.style.display = "none"
+        navBarLoginBtn.style.display = "flex"
+    } else {
+        navBarMyAccount.style.display = "flex"
+        navBarLoginBtn.style.display = "none"
+    }
+    const res = await fetch("/api/userLogin"); 
 
-//     const result = await res.json();
-//     console.log(result)
-//     if (res.status === 200) {
-//         if (result.isLoggedInUSERHTML) {
-//             isLoggedInUSERHTML = true;
-//             navBarMyAccount.style.display = "flex"
-//             navBarLoginBtn.style.display = "none"
-//         }
-//     } else {
-//         window.location = "../html/500.html"
-//     }
-//     console.log("isLoggedInUSERHTML: ", isLoggedInUSERHTML)
-// }
-// checkUserLogin();
+    const result = await res.json();
+    console.log(result)
+    if (res.status === 200) {
+        if (result.isLoggedInUSERHTML) {
+            isLoggedInUSERHTML = true;
+            navBarMyAccount.style.display = "flex"
+            navBarLoginBtn.style.display = "none"
+        }
+    } else {
+        window.location = "../html/500.html"
+    }
+    console.log("isLoggedInUSERHTML: ", isLoggedInUSERHTML)
+}
+checkUserLogin();
 
 
 // switch form for user
