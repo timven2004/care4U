@@ -86,7 +86,7 @@ export class AvailableTimeSlotsController {
             console.log(breakedTimeSlots);
             //122 is for Temporary Use
             await this.availableTimeSlotsServices.newAvailavleTimeSlots(breakedTimeSlots, req.session["doctorId"] || 122)
-            res.redirect(`/doctor/doctorProfile.html`)
+            res.redirect(`/doctor/doctorsProfile.html`)
         } catch (err) {
             console.error(err)
             res.status(502).json({ message: "internal server error" })
