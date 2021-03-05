@@ -165,7 +165,7 @@ async function checkUserLogin() {
         navBarMyAccBtn.style.display = "block"
     }
     const res = await fetch("/api/userLogin");
-
+    
     const result = await res.json();
     console.log(result)
     if (res.status === 200) {
@@ -174,7 +174,11 @@ async function checkUserLogin() {
             navBarMyUserAccount.style.display = "block"
             navBarUserLoginBtn.style.display = "none"
             navBarMyAccBtn.style.display = "block"
-            return;
+        }else{
+            isLoggedInUSERAPI = false;
+            navBarMyUserAccount.style.display = "none"
+            navBarMyAccBtn.style.display = "none"
+            navBarUserLoginBtn.style.display = "block"
         }
     }
     // else  (res.status === 500) {
@@ -215,7 +219,11 @@ async function checkDoctorLogin() {
             navBarMyDocAccount.style.display = "block"
             navBarDocLoginBtn.style.display = "none"
             navBarMyDocAccBtn.style.display = "block"
-            return true;
+        }else{
+            isLoggedInDOCAPI = false;
+            navBarMyDocAccount.style.display = "none"
+            navBarMyDocAccBtn.style.display = "none"
+            navBarDocLoginBtn.style.display = "block"
         }
     }
   

@@ -8,8 +8,9 @@ export function isLoggedInUSERAPI(
     if (req.session?.["userId"]) {
         next();
     } else {
-        // res.redirect("/login.html");
-        res.status(401).json({ message: "Unauthorized" });
+        //res.redirect("/html/main-page.html");
+        //res.status(401).json({ message: "Unauthorized" });
+        res.json({isLoggedInUSERAPI: false })
     }
 }
 
@@ -21,8 +22,9 @@ export function isLoggedInDOCAPI(
     if (req.session?.["doctorId"]) {
         next();
     } else {
-        // res.redirect("/login.html");
-        res.status(401).json({ message: "Unauthorized" });
+        //res.redirect("/html/main-page.html");
+        // res.status(401).json({ message: "Unauthorized" });
+        res.json({isLoggedInDOCAPI: false })
     }
 }
 
@@ -36,6 +38,7 @@ export function isLoggedInUSERHTML(
         next();
     } else {
         res.redirect("/html/main-page.html");
+        //res.json({isLoggedInUSERAPI: false })
     }
 }
 export function isLoggedInDOCHTML(
