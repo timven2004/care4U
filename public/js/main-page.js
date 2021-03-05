@@ -15,7 +15,7 @@ const doctorModal = document.querySelector('#doctorRegButton')
 
 
 // User Registration
-function userRegistrationFormSubmit() {
+async function userRegistrationFormSubmit() {
     userRegForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 

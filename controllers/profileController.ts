@@ -20,8 +20,7 @@ export class ProfileController {
                  return;
             }
                 
-              const result = await this.profileService.createUser
-                          req.body;
+              const result = await this.profileService.createUser(req.body)
               console.log(result);
               res.json ({ message: 'success' }) 
         } catch (err) {
