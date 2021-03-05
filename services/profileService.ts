@@ -24,7 +24,7 @@ export class ProfileService {
             return trx.insert({
                 name: body["name"],
                 email: body["email"],
-                telephone: body["telephone"],
+                telephone: body["tel"],
                 password: hashPassword1,
                 created_at: trx.fn.now(),
                 updated_at: trx.fn.now(),
@@ -107,7 +107,7 @@ export class ProfileService {
             return trx.insert({
                 name: body["name"],
                 email: body["email"],
-                telephone: body["telephone"],
+                telephone: body["tel"],
                 password: hashPassword1,
                 description: body["description"],
                 created_at: trx.fn.now(),

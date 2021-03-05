@@ -40,6 +40,7 @@ async function userRegistrationFormSubmit() {
         if (res.status === 200) {
             userRegForm.reset();
             window.location = "../html/main-page.html"
+            alert("User registration success")
         } else if (res.status === 401) {
             alert(result.message);
         }
@@ -76,6 +77,7 @@ function DoctorRegistrationFormSubmit() {
         if (res.status === 200) {
             doctorRegForm.reset();
             window.location = "../html/main-page.html"
+            alert("Doctor registration success")
 
         } else if (res.status === 401) {
             alert(result.message);
@@ -195,20 +197,21 @@ async function checkDoctorLogin() {
     const navBarDocLoginBtn = document.querySelector("#login-reg-doctor")
     const navBarMyDocAccBtn = document.querySelector("#myDoctorAccount .innerMyDocAccount")
 
-    if (!isLoggedInDOCAPI) {
-        navBarMyDocAccount.style.display = "none"
-        navBarMyDocAccBtn.style.display = "none"
-        navBarDocLoginBtn.style.display = "block"
-    } else {
-        navBarMyDocAccount.style.display = "block"
-        navBarDocLoginBtn.style.display = "none"
-        navBarMyDocAccBtn.style.display = "block"
-    }
+    // if (!isLoggedInDOCAPI) {
+    //     navBarMyDocAccount.style.display = "none"
+    //     navBarMyDocAccBtn.style.display = "none"
+    //     navBarDocLoginBtn.style.display = "block"
+    // } else {
+    //     navBarMyDocAccount.style.display = "block"
+    //     navBarDocLoginBtn.style.display = "none"
+    //     navBarMyDocAccBtn.style.display = "block"
+    // }
     const res = await fetch("/api/doctorLogin");
 
     const result = await res.json();
     console.log(result)
     if (res.status === 200) {
+        console.log(result)
         if (result.isLoggedInDOCAPI) {
             isLoggedInDOCAPI = true;
             navBarMyDocAccount.style.display = "block"
