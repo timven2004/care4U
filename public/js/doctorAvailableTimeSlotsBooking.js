@@ -40,6 +40,6 @@ for (let i =0;i<7;i++){
 // }
 
 
-formStr = formStr + `<button class="btn btn-danger" type="submit">確認提交</button>
+formStr = formStr + `<button class="btn btn-success my-2" type="submit">確認提交</button>
 `
 submissionForm.innerHTML=formStr
