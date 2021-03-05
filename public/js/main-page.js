@@ -152,7 +152,7 @@ doctorLogin()
 
 async function checkUserLogin() {
     const navBarMyUserAccount = document.querySelector("#myUserAccount #userAccountItems")
-    const navBarUserLoginBtn = document.querySelector("#login-reg-doctor")
+    const navBarUserLoginBtn = document.querySelector("#login-reg-doctor a")
     const navBarMyAccBtn = document.querySelector("#myUserAccount .innerMyUserAccount")
 
     if (!isLoggedInUSERAPI) {
@@ -165,7 +165,7 @@ async function checkUserLogin() {
         navBarMyAccBtn.style.display = "block"
     }
     const res = await fetch("/api/userLogin");
-    
+
     const result = await res.json();
     console.log(result)
     if (res.status === 200) {
