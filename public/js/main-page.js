@@ -195,11 +195,6 @@ async function checkDoctorLogin() {
     const navBarDocLoginBtn = document.querySelector("#login-reg-doctor")
     const navBarMyDocAccBtn = document.querySelector("#myDoctorAccount .innerMyDocAccount")
 
-    fetch('/')
-  .then(response => response.json())
-  .then(data => console.log(data));
-
-
     if (!isLoggedInDOCAPI) {
         navBarMyDocAccount.style.display = "none"
         navBarMyDocAccBtn.style.display = "none"
