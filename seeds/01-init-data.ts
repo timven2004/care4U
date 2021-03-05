@@ -18,6 +18,12 @@ export async function seed(knex: Knex): Promise<void> {
             telephone: "12345678",
         },
         {
+            name: "victor",
+            password: await hashPassword("1234"),
+            email: "erenyager214@gmail.com",
+            telephone: "22222222",
+        },
+        {
             name: "alex",
             password: await hashPassword("2345"),
             email: "alex@alex.com",

@@ -15,7 +15,7 @@ const doctorModal = document.querySelector('#doctorRegButton')
 
 
 // User Registration
-function userRegistrationFormSubmit() {
+async function userRegistrationFormSubmit() {
     userRegForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -190,6 +190,11 @@ async function checkDoctorLogin() {
     const navBarMyDocAccount = document.querySelector("#myDoctorAccount #doctorAccountItems")
     const navBarDocLoginBtn = document.querySelector("#login-reg-doctor")
     const navBarMyDocAccBtn = document.querySelector("#myDoctorAccount .innerMyDocAccount")
+
+    fetch('/')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
 
     if (!isLoggedInDOCAPI) {
         navBarMyDocAccount.style.display = "none"
