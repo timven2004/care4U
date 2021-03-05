@@ -7,6 +7,10 @@ const switchDocRegLoginBtn = document.querySelector("#reg-login-switch1 a");
 let fillingLoginForm = true;
 let fillingDoctorLoginForm = true;
 let isLoggedInUSERAPI = false;
+let isLoggedInDOCAPI = false;
+
+const userModal = document.querySelector('#userRegButton')
+const doctorModal = document.querySelector('#doctorRegButton')
 
 
 
@@ -72,6 +76,7 @@ function DoctorRegistrationFormSubmit() {
         if (res.status === 200) {
             doctorRegForm.reset();
             window.location = "../html/main-page.html"
+
         } else if (res.status === 401) {
             alert(result.message);
         }
@@ -132,7 +137,7 @@ function doctorLogin() {
         const result = await res.json();
         console.log(result);
         if (res.status === 200) {
-            userLoginForm.reset();
+            doctorLoginForm.reset();
             window.location = "../html/main-page.html"
         } else if (res.status === 401) {
             alert(result.message);
@@ -145,63 +150,74 @@ doctorLogin()
 
 
 
-// async function checkDoctorLogin() {
-//     const navBarMyAccount = document.querySelector(".navbar-nav #myDoctorAccount")
-//     const navBarLoginBtn = document.querySelector(".navbar-nav #login-reg-doctor")
-//     if (!isLoggedIn) {
-//         navBarMyAccount.style.display = "none"
-//         navBarLoginBtn.style.display = "flex"
-//     } else {
-//         navBarMyAccount.style.display = "flex"
-//         navBarLoginBtn.style.display = "none"
-//     }
-
-//     const res = await fetch("/login");
-//     const result = await res.json();
-//     if (res.status === 200) {
-//         if (result.isLoggedIn) {
-//             isLoggedIn = true;
-//             navBarMyAccount.style.display = "flex"
-//             navBarLoginBtn.style.display = "none"
-//             return true
-//         }
-//     } else {
-//         window.location = "/"
-//     }
-//     console.log("isLoggedIn:", isLoggedIn)
-//     return false
-// }
-// checkDoctorLogin()
-
-
 async function checkUserLogin() {
     const navBarMyUserAccount = document.querySelector("#myUserAccount #userAccountItems")
-    const navBarUserLoginBtn = document.querySelector("#userRegButton")
+    const navBarUserLoginBtn = document.querySelector("#login-reg-doctor")
+    const navBarMyAccBtn = document.querySelector("#myUserAccount .innerMyUserAccount")
+
     if (!isLoggedInUSERAPI) {
         navBarMyUserAccount.style.display = "none"
-        navBarUserLoginBtn.style.display = "flex"
+        navBarMyAccBtn.style.display = "none"
+        navBarUserLoginBtn.style.display = "block"
     } else {
-        navBarMyUserAccount.style.display = "flex"
+        navBarMyUserAccount.style.display = "block"
         navBarUserLoginBtn.style.display = "none"
+        navBarMyAccBtn.style.display = "block"
     }
-    const res = await fetch("/api/userLogin"); 
+    const res = await fetch("/api/userLogin");
 
     const result = await res.json();
     console.log(result)
     if (res.status === 200) {
         if (result.isLoggedInUSERAPI) {
             isLoggedInUSERAPI = true;
-            navBarMyUserAccount.style.display = "flex"
+            navBarMyUserAccount.style.display = "block"
             navBarUserLoginBtn.style.display = "none"
+            navBarMyAccBtn.style.display = "block"
             return;
         }
-    } 
-    // else {
-    //     window.location = "../html/500.html"
+    }
+    // else  (res.status === 500) {
+    //     alert(result.message);
     // }
     console.log("isLoggedInUSERAPI:", isLoggedInUSERAPI)
 }
 checkUserLogin();
+
+
+
+async function checkDoctorLogin() {
+    const navBarMyDocAccount = document.querySelector("#myDoctorAccount #doctorAccountItems")
+    const navBarDocLoginBtn = document.querySelector("#login-reg-doctor")
+    const navBarMyDocAccBtn = document.querySelector("#myDoctorAccount .innerMyDocAccount")
+
+    if (!isLoggedInDOCAPI) {
+        navBarMyDocAccount.style.display = "none"
+        navBarMyDocAccBtn.style.display = "none"
+        navBarDocLoginBtn.style.display = "block"
+    } else {
+        navBarMyDocAccount.style.display = "block"
+        navBarDocLoginBtn.style.display = "none"
+        navBarMyDocAccBtn.style.display = "block"
+    }
+    const res = await fetch("/api/doctorLogin");
+
+    const result = await res.json();
+    console.log(result)
+    if (res.status === 200) {
+        if (result.isLoggedInDOCAPI) {
+            isLoggedInDOCAPI = true;
+            navBarMyDocAccount.style.display = "block"
+            navBarDocLoginBtn.style.display = "none"
+            navBarMyDocAccBtn.style.display = "block"
+            return true;
+        }
+    }
+  
+    console.log("isLoggedInDOCAPI:", isLoggedInDOCAPI)
+}
+checkDoctorLogin();
+
 
 
 // switch form for user
@@ -246,3 +262,12 @@ function switchDocLoginRegForm() {
     });
 }
 switchDocLoginRegForm();
+
+
+// function modalHide() {
+//     userModal.addEventListener ("click", () => {
+//     } 
+
+//     )
+// }
+

@@ -57,7 +57,7 @@ export class ProfileController {
                  return;
             }
                 
-              const result = await this.profileService.createUser (
+              const result = await this.profileService.createDoctor (
                         req.body
               );
               console.log(result);
@@ -146,7 +146,7 @@ export class ProfileController {
             const match = await checkPassword(password, doctor.password);
             if (match) {
                 req.session["doctorId"] = doctor.id;
-                res.json({ message: "Login successed!" });
+                res.json({ message: "Doctor Login successed!" });
                 console.log(req.session["doctorId"]);
             }
         } catch (err) {
@@ -161,6 +161,17 @@ export class ProfileController {
         try {
 
             res.json({ isLoggedInUSERAPI: true });
+            return;
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ message: "Internal Server Error" });
+        }
+    };
+
+    public checkDoctorLogin = async (req: Request, res: Response) => {
+        try {
+
+            res.json({ isLoggedInDOCAPI: true });
             return;
         } catch (err) {
             console.log(err);

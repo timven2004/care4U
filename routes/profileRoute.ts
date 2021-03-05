@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { isLoggedInUSERAPI } from '../guard';
+import { isLoggedInUSERAPI, isLoggedInDOCAPI } from '../guard';
 import {profileController} from "../main"
 
 export const profileRoutes = express.Router();
@@ -11,15 +11,6 @@ profileRoutes.get("/api/userLogin", isLoggedInUSERAPI, async (req:Request,res:Re
 
 profileRoutes.post("/api/createUser", async (req:Request, res:Response)=> await profileController.postUser(req, res))
 
-// {
-//     try{
-//         res.json(await profileController.postUser(req.body))
-
-//     }catch(err){
-//         console.error(err.message)
-//         res.status(502).json({message:"Internal Server Error"})
-//     }
-// })
 
 profileRoutes.get("/api/userProfile/", async (req:Request, res:Response)=>{
     try{
@@ -46,6 +37,10 @@ profileRoutes.get("/api/userLogout", async (req:Request, res:Response)=> await p
 
 
 profileRoutes.post("/api/doctorLogin",async (req:Request,res:Response)=> await profileController.doctorLogin(req,res))
+
+
+profileRoutes.post("/api/doctorLogin", isLoggedInDOCAPI, async (req:Request,res:Response)=> await profileController.checkDoctorLogin(req,res))
+
 
 profileRoutes.post("/api/createDoctor", async (req:Request, res:Response)=> await profileController.postDoctor(req, res))
 // profileRoutes.post("/api/createDoctor", async (req:Request, res:Response)=>{

@@ -66,14 +66,14 @@ app.use(questionnaireRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(isLoggedInUSERHTML, express.static(path.join(__dirname, "private")));
-app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "404.html"));
-});
-
-
 // app.use((req, res) => {
-//     res.status(404).json({ message: "404 Not found" });
+//     res.sendFile(path.join(__dirname, "404.html"));
 // });
+
+
+app.use((req, res) => {
+    res.status(404).json({ message: "404 Not found" });
+});
 
 app.listen(8080, () => {
     console.log("server started! listening on port 8080");

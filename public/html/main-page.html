@@ -34,28 +34,27 @@
                         </li>
 
                         <!-- Button trigger modal for doctor  -->
-                        <li id="login-reg-doctor" class="nav-item" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
+                        <li id="login-reg-doctor" class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            data-dismiss="modal" data-target="#exampleModal1">
                             <a class="nav-link" href="#">登入/註冊 <span class="sr-only"></span></a>
                         </li>
 
                         <!-- Modal for doctor -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" data-dismiss="modal" data-bs-target="#exampleModal1" id="exampleModal"
+                            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">註冊 / 登入身份</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel" data-dismiss="modal">註冊 / 登入身份
+                                        </h5>
                                     </div>
 
                                     <div class="modal-body role">
-                                        <!-- <div id="login-response1" class="form-submit-response1">
-                                            <button>已完成註冊，馬上登入!</button>
-                                        </div> -->
 
                                         <div class="doctorlogin">
                                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal1">
+                                                data-bs-target="#exampleModal1" id="doctorRegButton"
+                                                data-dismiss="modal">
                                                 醫生註冊 / 登入
                                             </button>
 
@@ -137,29 +136,32 @@
 
 
                                         <!-- dropdown menu for doctor after login -->
-                                        <!-- <li class="nav-item dropdown" id="myDoctorAccount">
-                                            <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                醫生帳戶
-                                            </a>
-                                            <div id="doctorAccountItems" class="dropdown-menu"
-                                                aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="../html/doctorsProfile.html"><i
-                                                    class="far fa-edit"></i>更改帳戶資料</a>
-                                                <a class="dropdown-item" href="">
-                                                    <i class="far fa-calendar-check"></i>設定預約時間</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="/api/userLogout" class="dropdown-item" id="logout"
-                                                    onclick="return confirm('請確認是否登出?');">登出</a>
-                                                <a class="dropdown-item" id="logout" href="/logout">
-                                                    <i class="fas fa-sign-out-alt"></i>登出</a>
-                                            </div>
-                                        </li> -->
+                                        <div>
+                                            <li class="nav-item dropdown" id="myDoctorAccount">
+                                                <a class="nav-link innerMyDocAccount" href="#" id="navbarDropdown"
+                                                    data-toggle="dropdown" aria-expanded="false" role="button"
+                                                    aria-haspopup="true">
+                                                    醫生帳戶
+                                                </a>
+                                                <div id="doctorAccountItems" class="dropdown-menu"
+                                                    aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="/doctor/doctorsProfile.html"><i
+                                                            class="far fa-edit"></i>更改帳戶資料</a>
+                                                    <a class="dropdown-item"
+                                                        href="/doctor/doctorAvailableTimeSlotsBooking.html">
+                                                        <i class="far fa-calendar-check"></i>設定預約時間</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="/api/doctorLogout" class="dropdown-item" id="logout"
+                                                        onclick="return confirm('請確認是否登出?');">
+                                                        <i class="fas fa-sign-out-alt"></i>登出</a>
+                                                </div>
+                                            </li>
+                                        </div>
 
 
                                         <div class="userlogin">
                                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal2" id="userRegButton">
+                                                data-bs-target="#exampleModal2" id="userRegButton" data-dismiss="modal">
                                                 用戶註冊 / 登入
                                             </button>
 
@@ -234,6 +236,7 @@
 
                                         </div>
 
+
                                     </div>
                                 </div>
                             </div>
@@ -241,28 +244,29 @@
                         </div>
 
                         <!-- dropdown menu for user after login -->
-                        <li class="nav-item dropdown" id="myUserAccount">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                我的帳戶
-                            </a>
-                            <div id="userAccountItems" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/user/clientProfile.html"><i
-                                        class="far fa-edit"></i>更改帳戶資料</a>
-                                <a class="dropdown-item" href="/user/clientBooking.html">
-                                    <i class="fas fa-user-md"></i>預約醫生</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="/api/userLogout" class="dropdown-item" id="logout"
-                                    onclick="return confirm('請確認是否登出?');">
-                                    <i class="fas fa-sign-out-alt"></i>登出</a>
-                            </div>
-                        </li>
-
+                        <div>
+                            <li class="nav-item dropdown" id="myUserAccount">
+                                <a class="nav-link innerMyUserAccount" href="#" id="navbarDropdown"
+                                    data-toggle="dropdown" aria-expanded="false" role="button" aria-haspopup="true">
+                                    我的帳戶
+                                </a>
+                                <div id="userAccountItems" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/user/clientProfile.html"><i
+                                            class="far fa-edit"></i>更改帳戶資料</a>
+                                    <a class="dropdown-item" href="/user/questionnaire.html">
+                                        <i class="fas fa-user-md"></i>預約醫生</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/api/userLogout" class="dropdown-item" id="logout"
+                                        onclick="return confirm('請確認是否登出?');">
+                                        <i class="fas fa-sign-out-alt"></i>登出</a>
+                                </div>
+                            </li>
+                        </div>
 
                     </ul>
                 </div>
         </nav>
-    </header> 
+    </header>
 
 
 
@@ -317,7 +321,7 @@
         <div class="container">
             <div class="row">
                 <div>
-                    <p>© 2021 Care4U . 版權所有 不得轉載</p>
+                    <p>© 2021 Care4U . 版權所有，並保留一切權利</p>
                 </div>
             </div>
         </div>
