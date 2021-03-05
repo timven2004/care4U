@@ -17,7 +17,7 @@ export class AvailableTimeSlotsService {
     async newAvailavleTimeSlots(breakedTimeSlots: timeSlotsWithOutId[], doctorId: number) {
         const result = await this.knex.transaction(async (trx) => {
             try {
-                //check if there is repeated start_time
+                //check if there is repeated time_start
                 const existingFreeTime = await trx("doctors_available_time_slots").select("time_start", "doctor_id").where("doctor_id", doctorId)
                 let toBeInputed: timeSlotsWithOutId[] = []
                 for (let obj of breakedTimeSlots) {
@@ -67,7 +67,7 @@ export class AvailableTimeSlotsService {
                 .innerJoin("doctors", "doctors.id", "doctors_available_time_slots.doctor_id")
                 .where("doctor_id", doctorId)
                 .andWhere(function() {
-                    this.where('start_time', '>', currentTime)
+                    this.where('time_start', '>', currentTime)
                   })
             return result;
         } catch (err) {

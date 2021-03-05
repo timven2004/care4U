@@ -24,7 +24,8 @@ export class AvailableTimeSlotsController {
 
     }
 
-    async getAvailableTimeSlotsFollowUp(req: Request, res: Response, doctorId: number) {
+    async getAvailableTimeSlotsFollowUp(req: Request, res: Response) {
+        const doctorId = req.session["doctorId"]
         res.json(await this.availableTimeSlotsServices.retrieveAvailableTimeSlotsFollowUp(res, doctorId));
 
     }
