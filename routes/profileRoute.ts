@@ -39,7 +39,7 @@ profileRoutes.get("/api/userLogout", async (req:Request, res:Response)=> await p
 profileRoutes.post("/api/doctorLogin",async (req:Request,res:Response)=> await profileController.doctorLogin(req,res))
 
 
-profileRoutes.post("/api/doctorLogin", isLoggedInDOCAPI, async (req:Request,res:Response)=> await profileController.checkDoctorLogin(req,res))
+profileRoutes.get("/api/doctorLogin", isLoggedInDOCAPI, async (req:Request,res:Response)=> await profileController.checkDoctorLogin(req,res))
 
 
 profileRoutes.post("/api/createDoctor", async (req:Request, res:Response)=> await profileController.postDoctor(req, res))
