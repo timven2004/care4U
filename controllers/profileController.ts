@@ -12,8 +12,9 @@ export class ProfileController {
     // (body: Request["body"])
      public postUser = async (req: Request, res: Response) => {
         try {
-            const { name, email, telephone, password } = req.body;
-            if (!name || !email || !telephone || !password) {
+            console.log(req.body)
+            const { name, email, tel, password } = req.body;
+            if (!name || !email || !tel || !password) {
                 res.status(400).json ({ 
                     message: 'Please enter name/ email/ telephone/ password',
                  })
@@ -48,8 +49,8 @@ export class ProfileController {
 
     postDoctor = async (req: Request, res: Response) => {
         try {
-            const { name, email, telephone, password } = req.body
-            if (!name || !password || !telephone || !email) {
+            const { name, email, tel, password } = req.body
+            if (!name || !password || !tel || !email) {
                 res.status(400).json ({ 
                     message: 'Please enter name/ email/ telephone/ password'
                  })
