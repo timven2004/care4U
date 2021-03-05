@@ -157,15 +157,15 @@ async function checkUserLogin() {
     const navBarUserLoginBtn = document.querySelector("#login-reg-doctor a")
     const navBarMyAccBtn = document.querySelector("#myUserAccount .innerMyUserAccount")
 
-    if (!isLoggedInUSERAPI) {
-        navBarMyUserAccount.style.display = "none"
-        navBarMyAccBtn.style.display = "none"
-        navBarUserLoginBtn.style.display = "block"
-    } else {
-        navBarMyUserAccount.style.display = "block"
-        navBarUserLoginBtn.style.display = "none"
-        navBarMyAccBtn.style.display = "block"
-    }
+    // if (!isLoggedInUSERAPI) {
+    //     navBarMyUserAccount.style.display = "none"
+    //     navBarMyAccBtn.style.display = "none"
+    //     navBarUserLoginBtn.style.display = "block"
+    // } else {
+    //     navBarMyUserAccount.style.display = "block"
+    //     navBarUserLoginBtn.style.display = "none"
+    //     navBarMyAccBtn.style.display = "block"
+    // }
     const res = await fetch("/api/userLogin");
 
     const result = await res.json();
