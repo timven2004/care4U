@@ -24,23 +24,28 @@
             <div class="container">
                 <a class="navbar-brand" href="../html/main-page.html"><img src="../img/logo.jpeg"><span
                         id="logo">Care4U</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link active" aria-current="page" href="../html/main-page.html">主頁</a>
+                            <a class="nav-link active" aria-current="page" href="../html/main-page.html">主頁 <span
+                                    class="sr-only">(current)</span></a>
                         </li>
 
                         <!-- Button trigger modal for doctor  -->
                         <li id="login-reg-doctor" class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            data-bs-backdrop="true">
-                            <a class="nav-link" href="#exampleModal" data-toggle="modal">登入/註冊 <span
-                                    class="sr-only"></span></a>
+                            data-dismiss="modal">
+                            <a class="nav-link" href="#">登入/註冊 <span class="sr-only"></span></a>
                         </li>
 
                         <!-- Modal for doctor -->
-                        <div class="modal fade" data-target="#exampleModal" id="exampleModal" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal" data-dismiss="modal" data-bs-target="#exampleModal"
+                            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -130,9 +135,10 @@
 
 
 
+
                                         <div class="userlogin">
                                             <button type="button" class="btn buttonColor" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal2" id="userRegButton">
+                                                data-bs-target="#exampleModal2" id="userRegButton" data-dismiss="modal">
                                                 用戶註冊 / 登入
                                             </button>
 
@@ -208,12 +214,11 @@
                         </div>
 
 
-
                         <!-- dropdown menu for doctor after login -->
                         <div>
                             <li class="nav-item dropdown" id="myDoctorAccount">
                                 <a class="nav-link innerMyDocAccount" href="#" id="navbarDropdown"
-                                    data-toggle="dropdown" aria-expanded="false" role="button" aria-haspopup="true">
+                                    data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" role="button">
                                     醫生帳戶
                                 </a>
                                 <div id="doctorAccountItems" class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -232,12 +237,11 @@
 
 
 
-
                         <!-- dropdown menu for user after login -->
                         <div>
                             <li class="nav-item dropdown" id="myUserAccount">
-                                <a class="nav-link innerMyUserAccount" type="button" id="navbarDropdown"
-                                    data-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link innerMyUserAccount" href="#" id="navbarDropdown"
+                                    data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" role="button">
                                     我的帳戶
                                 </a>
                                 <div id="userAccountItems" class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -258,6 +262,7 @@
                 </div>
         </nav>
     </header>
+
 
 
 
