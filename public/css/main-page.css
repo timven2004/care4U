@@ -41,10 +41,12 @@ p {
     margin-top: 10px;
 }
 
-.flow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.buttonColor {
+    background-color: #696969;
+    font-weight: 400;
+    color: white;
+    font-size: 18px;
+    border: 1px solid black;
 }
 
 .box {
@@ -70,25 +72,6 @@ p {
     margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 768px) {
-    .box {
-        width: 90%;
-        height: 100%;
-        margin: 15px;
-    }
-
-    .box img {
-        width: 30%;
-        height: 30%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .carousel-inner .carousel-item img {
-        max-height: 50vh;
-    }
-}
-
 #logo {
     font-size: 28px;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
@@ -100,38 +83,21 @@ p {
     font-size: 20px;
 }
 
-.workflow {
-    font-size: 24px;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    opacity: 0.8;
-}
-
 .carousel-inner .carousel-item img {
     width: 100vw;
     height: 120vh;
-}
-
-.flow .workflow img {
-    width: 100vw;
-    height: 100vh;
-}
-
-.flow .workflow .img-fluid {
-    object-fit: cover;
 }
 
 #doctor-reg-or-login-form .submit {
     margin-top: 10px;
     padding: 5px 0;
     width: 100%;
-    font-weight: 800;
-    font-weight: bold;
+    font-weight: 400;
     border-radius: 8px;
-    background-color: #6e757c;
+    background-color: #696969;
     font-size: 18px;
-    color: white;
     border: 1px solid black;
+    color: white;
 }
 
 #doctor-reg-or-login-form .form-control {
@@ -142,13 +108,12 @@ p {
     margin-top: 10px;
     padding: 5px 0;
     width: 100%;
-    font-weight: 800;
-    font-weight: bold;
+    font-weight: 400;
     border-radius: 8px;
-    background-color: #6e757c;
+    background-color: #696969;
     font-size: 18px;
-    color: white;
     border: 1px solid black;
+    color: white;
 }
 
 #user-reg-or-login-form .form-control {
@@ -283,4 +248,45 @@ label {
 
 .img-fluid {
     object-fit: cover;
+}
+
+.flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.workflow {
+    font-size: 24px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.flow .workflow img {
+    width: 100vw;
+    height: 100vh;
+}
+
+.flow .workflow .img-fluid {
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 768px) {
+    .box {
+        width: 90%;
+        height: 100%;
+        margin: 15px;
+    }
+
+    .box img {
+        width: 30%;
+        height: 30%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .carousel-inner .carousel-item img {
+        max-height: 50vh;
+    }
 }

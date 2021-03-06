@@ -9,8 +9,9 @@ let fillingDoctorLoginForm = true;
 let isLoggedInUSERAPI = false;
 let isLoggedInDOCAPI = false;
 
-const userModal = document.querySelector('#userRegButton')
-const doctorModal = document.querySelector('#doctorRegButton')
+// const doctorModal = document.querySelector('#doctorRegButton')
+// const userModal = document.querySelector('#userRegButton')
+// const firstModal = document.querySelector('#login-reg-doctor')
 
 
 
@@ -51,7 +52,7 @@ userRegistrationFormSubmit()
 
 
 // Doctor Registration
-function DoctorRegistrationFormSubmit() {
+async function DoctorRegistrationFormSubmit() {
     doctorRegForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -90,7 +91,7 @@ DoctorRegistrationFormSubmit()
 
 
 // User login
-function userLogin() {
+async function userLogin() {
     userLoginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -120,7 +121,7 @@ userLogin()
 
 
 // Doctor login
-function doctorLogin() {
+async function doctorLogin() {
     doctorLoginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -151,21 +152,12 @@ doctorLogin()
 
 
 
-
+// check user login status
 async function checkUserLogin() {
     const navBarMyUserAccount = document.querySelector("#myUserAccount #userAccountItems")
     const navBarUserLoginBtn = document.querySelector("#login-reg-doctor a")
     const navBarMyAccBtn = document.querySelector("#myUserAccount .innerMyUserAccount")
 
-    // if (!isLoggedInUSERAPI) {
-    //     navBarMyUserAccount.style.display = "none"
-    //     navBarMyAccBtn.style.display = "none"
-    //     navBarUserLoginBtn.style.display = "block"
-    // } else {
-    //     navBarMyUserAccount.style.display = "block"
-    //     navBarUserLoginBtn.style.display = "none"
-    //     navBarMyAccBtn.style.display = "block"
-    // }
     const res = await fetch("/api/userLogin");
 
     const result = await res.json();
@@ -176,36 +168,24 @@ async function checkUserLogin() {
             navBarMyUserAccount.style.display = "block"
             navBarUserLoginBtn.style.display = "none"
             navBarMyAccBtn.style.display = "block"
-        }else{
+        } else {
             isLoggedInUSERAPI = false;
             navBarMyUserAccount.style.display = "none"
             navBarMyAccBtn.style.display = "none"
             navBarUserLoginBtn.style.display = "block"
         }
     }
-    // else  (res.status === 500) {
-    //     alert(result.message);
-    // }
     console.log("isLoggedInUSERAPI:", isLoggedInUSERAPI)
 }
 checkUserLogin();
 
 
-
+// check doctor login status
 async function checkDoctorLogin() {
     const navBarMyDocAccount = document.querySelector("#myDoctorAccount #doctorAccountItems")
-    const navBarDocLoginBtn = document.querySelector("#login-reg-doctor")
+    const navBarDocLoginBtn = document.querySelector("#login-reg-doctor a")
     const navBarMyDocAccBtn = document.querySelector("#myDoctorAccount .innerMyDocAccount")
 
-    // if (!isLoggedInDOCAPI) {
-    //     navBarMyDocAccount.style.display = "none"
-    //     navBarMyDocAccBtn.style.display = "none"
-    //     navBarDocLoginBtn.style.display = "block"
-    // } else {
-    //     navBarMyDocAccount.style.display = "block"
-    //     navBarDocLoginBtn.style.display = "none"
-    //     navBarMyDocAccBtn.style.display = "block"
-    // }
     const res = await fetch("/api/doctorLogin");
 
     const result = await res.json();
@@ -217,14 +197,13 @@ async function checkDoctorLogin() {
             navBarMyDocAccount.style.display = "block"
             navBarDocLoginBtn.style.display = "none"
             navBarMyDocAccBtn.style.display = "block"
-        }else{
+        } else {
             isLoggedInDOCAPI = false;
             navBarMyDocAccount.style.display = "none"
             navBarMyDocAccBtn.style.display = "none"
             navBarDocLoginBtn.style.display = "block"
         }
     }
-  
     console.log("isLoggedInDOCAPI:", isLoggedInDOCAPI)
 }
 checkDoctorLogin();
@@ -253,6 +232,7 @@ function switchLoginRegForm() {
 switchLoginRegForm();
 
 
+
 // switch form for doctor
 function switchDocLoginRegForm() {
     doctorLoginForm.style.display = "block";
@@ -273,12 +253,3 @@ function switchDocLoginRegForm() {
     });
 }
 switchDocLoginRegForm();
-
-
-// function modalHide() {
-//     userModal.addEventListener ("click", () => {
-//     } 
-
-//     )
-// }
-
