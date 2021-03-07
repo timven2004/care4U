@@ -170,7 +170,7 @@ export class ProfileController {
 
     public checkDoctorLogin = async (req: Request, res: Response) => {
         try {
-
+            
             res.json({ isLoggedInDOCAPI: true });
             return;
         } catch (err) {

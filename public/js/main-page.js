@@ -155,15 +155,17 @@ doctorLogin()
 // check user login status
 async function checkUserLogin() {
     const navBarMyUserAccount = document.querySelector("#myUserAccount #userAccountItems")
-    const navBarUserLoginBtn = document.querySelector("#login-reg-doctor a")
+    const navBarUserLoginBtn = document.querySelector("#login-reg-doctor")
     const navBarMyAccBtn = document.querySelector("#myUserAccount .innerMyUserAccount")
 
     const res = await fetch("/api/userLogin");
 
     const result = await res.json();
-    console.log(result)
+    console.log("hello"+result.isLoggedInUSERAPI)
     if (res.status === 200) {
         if (result.isLoggedInUSERAPI) {
+            console.log("fuck you!")
+            console.log("fuck you "+ navBarUserLoginBtn)
             isLoggedInUSERAPI = true;
             navBarMyUserAccount.style.display = "block"
             navBarUserLoginBtn.style.display = "none"
@@ -191,7 +193,7 @@ async function checkDoctorLogin() {
     const result = await res.json();
     console.log(result)
     if (res.status === 200) {
-        console.log(result)
+        console.log("hihihihihi:" + result)
         if (result.isLoggedInDOCAPI) {
             isLoggedInDOCAPI = true;
             navBarMyDocAccount.style.display = "block"
