@@ -155,7 +155,7 @@ doctorLogin()
 // check user login status
 async function checkUserLogin() {
     const navBarMyUserAccount = document.querySelector("#myUserAccount #userAccountItems")
-    const navBarUserLoginBtn = document.querySelector("#login-reg-doctor a")
+    const navBarUserLoginBtn = document.querySelector("#login-reg-doctor .display")
     const navBarMyAccBtn = document.querySelector("#myUserAccount .innerMyUserAccount")
 
     const res = await fetch("/api/userLogin");
@@ -166,8 +166,8 @@ async function checkUserLogin() {
         if (result.isLoggedInUSERAPI) {
             isLoggedInUSERAPI = true;
             navBarMyUserAccount.style.display = "block"
-            navBarUserLoginBtn.style.display = "none"
             navBarMyAccBtn.style.display = "block"
+            navBarUserLoginBtn.style.display = "none"
         } else {
             isLoggedInUSERAPI = false;
             navBarMyUserAccount.style.display = "none"
@@ -183,7 +183,7 @@ checkUserLogin();
 // check doctor login status
 async function checkDoctorLogin() {
     const navBarMyDocAccount = document.querySelector("#myDoctorAccount #doctorAccountItems")
-    const navBarDocLoginBtn = document.querySelector("#login-reg-doctor a")
+    const navBarDocLoginBtn = document.querySelector("#login-reg-doctor .display")
     const navBarMyDocAccBtn = document.querySelector("#myDoctorAccount .innerMyDocAccount")
 
     const res = await fetch("/api/doctorLogin");
@@ -194,14 +194,14 @@ async function checkDoctorLogin() {
         console.log(result)
         if (result.isLoggedInDOCAPI) {
             isLoggedInDOCAPI = true;
-            navBarMyDocAccount.style.display = "block"
             navBarDocLoginBtn.style.display = "none"
+            navBarMyDocAccount.style.display = "block"
             navBarMyDocAccBtn.style.display = "block"
         } else {
             isLoggedInDOCAPI = false;
+            navBarDocLoginBtn.style.display = "block"
             navBarMyDocAccount.style.display = "none"
             navBarMyDocAccBtn.style.display = "none"
-            navBarDocLoginBtn.style.display = "block"
         }
     }
     console.log("isLoggedInDOCAPI:", isLoggedInDOCAPI)
