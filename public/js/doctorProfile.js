@@ -54,7 +54,7 @@ fetchingData().then(data=>{
             <p class="font-italic my-2"><div class="mx-2"><a href="https://webrtc-group6.web.app?email=${booking.clientEmail}">點擊前往視像房間</a></div></p>
            </div>`
     } else {pastBooking = pastBooking + ` <div class="p-4 rounded shadow-sm bg-light my-3">
-    <p class="font-italic mb-0"><span id="toBeTherapyDate" class="mx-2">${time.getYear()}/${time.getMonth()}/${time.getDate}</span><span
+    <p class="font-italic mb-0"><span id="toBeTherapyDate" class="mx-2">${time.getFullYear()}/${time.getMonth() +1}/${time.getDate()}</span><span
             id="toBeTherapyTime" class="mx-2">${`0${time.getHours()}`.substr(-2)}:${`0${time.getMinutes()}`.substr(-2)}</span><span id="Doctor"
             class="mx-2">${booking.name}</span></p><p class="font-italic my-2"><div class="mx-2">${booking.clientEmail}</div></p>
   </div>`}
@@ -73,7 +73,7 @@ for (let slot of data){
   let timeStart = new Date(slot.time_start);
   let timeEnd = new Date(slot.time_end);
   timeSlotsStr = timeSlotsStr + `<div class="p-4 rounded shadow-sm bg-light my-3">
-  <p class="font-italic mb-0"><span class="mx-2 freeTimedate">${`0${timeStart.getDate()}`.substr(-2)}/${`0${timeStart.getMonth()}`.substr(-2)}/${timeStart.getFullYear()}</span><span
+  <p class="font-italic mb-0"><span class="mx-2 freeTimedate">${`0${timeStart.getDate()}`.substr(-2)}/${`0${timeStart.getMonth()+1}`.substr(-2)}/${timeStart.getFullYear()}</span><span
           class="mx-2 freeTimeSlots">${`0${timeStart.getHours()}`.substr(-2)}:${`0${timeStart.getMinutes()}`.substr(-2)} - ${`0${timeEnd.getHours()}`.substr(-2)}:${`0${timeEnd.getMinutes()}`.substr(-2)}</span>
 </div>`
 }
