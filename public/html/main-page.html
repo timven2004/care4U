@@ -68,7 +68,7 @@
                                                         <div class="modal-body">
 
                                                             <div id="doctor-reg-or-login-form">
-                                                                <form id="doctor-login-form">
+                                                                <form action="/api/doctorLogin" method="POST" id="doctor-login-form">
                                                                     <h5>醫生登入</h5>
                                                                     <input type="email" class="form-control"
                                                                         id="login_email" name="login_email"
@@ -79,7 +79,7 @@
                                                                     <input class="submit" type="submit" value="登入" />
                                                                 </form>
 
-                                                                <form id="doctor-reg-form">
+                                                                <form action="/api/createDoctor" method="POST" id="doctor-reg-form" >
                                                                     <h5>醫生帳號註冊</h5>
                                                                     <div>
                                                                         <span>姓名</span>
@@ -148,7 +148,7 @@
 
                                                         <div class="modal-body role">
                                                             <div id="user-reg-or-login-form">
-                                                                <form id="login-form">
+                                                                <form action="/api/userLogin" method="POST" id="login-form">
                                                                     <h5>用戶登入</h5>
                                                                     <input type="email" class="form-control"
                                                                         id="login_email" name="login_email"
@@ -159,7 +159,7 @@
                                                                     <input class="submit" type="submit" value="登入" />
                                                                 </form>
 
-                                                                <form id="reg-form">
+                                                                <form action="/api/createUser" method="POST" id="reg-form">
                                                                     <h5>用戶帳號註冊</h5>
                                                                     <div>
                                                                         <span>姓名</span>
