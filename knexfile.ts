@@ -44,7 +44,7 @@ module.exports = {
     connection: {
       database: process.env.PRODUCTION_DB_NAME,
       user: process.env.PRODUCTION_USERNAME,
-      password: process.env.PRODUCTION_PASSWORD
+      password: process.env.PRODUCTION_PASSWORD,
     },
     pool: {
       min: 2,
